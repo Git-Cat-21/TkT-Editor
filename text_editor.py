@@ -30,9 +30,10 @@ def main():
     
     root.title("Text editor")
     root.geometry("700x700")
-
+    
     frame=Frame(root)
     frame.grid(row=0, column=0, sticky='e')
+    
 
     #creates menu object and stores it in menubar MAIN MENU BAR
     menubar=Menu(root) 
@@ -50,9 +51,15 @@ def main():
 
     T=Text(root,height=700,width=700,bg='#e2c6f1')
     T.grid(row=1, column=0, sticky='nsew')
+
+    Font_tuple=('Comic Sans MS',25,"bold")
+    T.configure(font=Font_tuple)
+
     root.grid_rowconfigure(1, weight=1)
     root.grid_columnconfigure(0, weight=1)
+
     root.config(menu=menubar)
+
     root.mainloop()
 
 if __name__ == "__main__":
