@@ -43,21 +43,22 @@ def main():
     file.add_command(label='Open',command=open_file)
     # file.add_command(label='Save',command=hello)
     file.add_command(label='Save As',command=saveAs)
-    
-
+    file.add_separator()
     file.add_command(label='Exit',command=root.quit)
     
 
     file1=Menu(menubar,tearoff=0)
-    menubar.add_cascade(label="Edit",menu=file1)
-    file1.add_command(label="Font")
+    menubar.add_cascade(label="Customize",menu=file1)
+    file1.add_command(label="Font Style")
+    file1.add_command(label="Font Size")
+    file1.add_command(label="bg color")
     
 
     T=Text(root,height=700,width=700,bg='#e2c6f1')
     T.grid(row=1, column=0, sticky='nsew')
 
-    Font_tuple=('Comic Sans MS',22,"bold")
-    T.configure(font=Font_tuple)
+    Font_tuple=('Helvetica',15,"bold")
+    T.configure(font=Font_tuple,foreground="black")
 
     root.grid_rowconfigure(1, weight=1)
     root.grid_columnconfigure(0, weight=1)
