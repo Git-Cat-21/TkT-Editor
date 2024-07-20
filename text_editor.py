@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter.filedialog import asksaveasfilename,askopenfilename
-
+root=Tk()
 def new():
     print("opening a new file")
     main()
@@ -12,6 +12,7 @@ def open_file():
         with open(file_path, "r") as fileobj:
             content = fileobj.read()
             print(content)
+            T.insert("1.0",content)
 
 def delete():
     pass
@@ -26,7 +27,7 @@ def saveAs():
 
 def main():
     global T
-    root=Tk()
+    
     root.title("Text editor")
     root.geometry("700x700")
 
