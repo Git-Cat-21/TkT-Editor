@@ -1,15 +1,22 @@
 from tkinter import *
-from tkinter.filedialog import asksaveasfilename
+from tkinter.filedialog import asksaveasfilename,askopenfilename
 
 def new():
     print("opening a new file")
     main()
 
+def open_file():
+    print("opening an existing file")
+    file_path = askopenfilename()
+    if file_path:
+        with open(file_path, "r") as fileobj:
+            content = fileobj.read()
+            print(content)
+
 def delete():
     pass
 
 def saveAs():
-    # global T
     t=T.get("1.0","end-1c")
     savelocation=asksaveasfilename()
     file1=open(savelocation,"w+")
@@ -22,15 +29,18 @@ def main():
     root=Tk()
     root.title("Text editor")
     root.geometry("700x700")
+
     frame=Frame(root)
     frame.grid(row=0, column=0, sticky='e')
+
     #creates menu object and stores it in menubar MAIN MENU BAR
     menubar=Menu(root) 
     #menu object called file submenu
     file=Menu(menubar,tearoff=0) 
     #tearoff detach the menu from the main window and turn it into a separate window not detached
+
     file.add_command(label="New",command=new)
-    # file.add_command(label='Open',command=hello)
+    file.add_command(label='Open',command=open_file)
     # file.add_command(label='Save',command=hello)
     file.add_command(label='Save As',command=saveAs)
     file.add_command(label='Delete',command=delete)
