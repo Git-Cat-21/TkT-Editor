@@ -1,10 +1,21 @@
 from tkinter import *
-
+#from tkfilebrowser import *
+from tkinter.filedialog import asksaveasfilename
 def new():
     print("opening a new file")
     main()
-    
+def delete():
+    pass
+def saveAs():
+    # global T
+    t=T.get("1.0","end-1c")
+    savelocation=asksaveasfilename()
+    file1=open(savelocation,"w+")
+    file1.write(t)
+    file1.close()
+    print(f"Save location: {savelocation}")
 def main():
+    global T
     root=Tk()
     root.title("Text editor")
     root.geometry("700x700")
@@ -16,7 +27,8 @@ def main():
     file.add_command(label="New",command=new)
     # file.add_command(label='Open',command=hello)
     # file.add_command(label='Save',command=hello)
-    # file.add_command(label='Save As',command=hello)
+    file.add_command(label='Save As',command=saveAs)
+    file.add_command(label='Delete',command=delete)
     file.add_command(label='Exit',command=root.quit)
     menubar.add_cascade(label="Options", menu=file)
     T=Text(root,height=700,width=700,bg='yellow')
