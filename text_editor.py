@@ -1,11 +1,13 @@
 from tkinter import *
-#from tkfilebrowser import *
 from tkinter.filedialog import asksaveasfilename
+
 def new():
     print("opening a new file")
     main()
+
 def delete():
     pass
+
 def saveAs():
     # global T
     t=T.get("1.0","end-1c")
@@ -13,7 +15,8 @@ def saveAs():
     file1=open(savelocation,"w+")
     file1.write(t)
     file1.close()
-    print(f"Save location: {savelocation}")
+    print(f"File saved to location: {savelocation}")
+
 def main():
     global T
     root=Tk()
