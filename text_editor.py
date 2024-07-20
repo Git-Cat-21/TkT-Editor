@@ -14,9 +14,6 @@ def open_file():
             print(content)
             T.insert("1.0",content)
 
-def delete():
-    pass
-
 def saveAs():
     t=T.get("1.0","end-1c")
     savelocation=asksaveasfilename()
@@ -36,23 +33,30 @@ def main():
     
 
     #creates menu object and stores it in menubar MAIN MENU BAR
-    menubar=Menu(root) 
     #menu object called file submenu
-    file=Menu(menubar,tearoff=0) 
     #tearoff detach the menu from the main window and turn it into a separate window not detached
+    menubar=Menu(root) 
+    file=Menu(menubar,tearoff=0) 
 
+    menubar.add_cascade(label="Options", menu=file)
     file.add_command(label="New",command=new)
     file.add_command(label='Open',command=open_file)
     # file.add_command(label='Save',command=hello)
     file.add_command(label='Save As',command=saveAs)
-    file.add_command(label='Delete',command=delete)
+    
+
     file.add_command(label='Exit',command=root.quit)
-    menubar.add_cascade(label="Options", menu=file)
+    
+
+    file1=Menu(menubar,tearoff=0)
+    menubar.add_cascade(label="Edit",menu=file1)
+    file1.add_command(label="Font")
+    
 
     T=Text(root,height=700,width=700,bg='#e2c6f1')
     T.grid(row=1, column=0, sticky='nsew')
 
-    Font_tuple=('Comic Sans MS',25,"bold")
+    Font_tuple=('Comic Sans MS',22,"bold")
     T.configure(font=Font_tuple)
 
     root.grid_rowconfigure(1, weight=1)
