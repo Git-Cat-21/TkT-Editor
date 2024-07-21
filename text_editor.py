@@ -54,7 +54,7 @@ def Sel_Font_Style():
         T.configure(font=Font_tuple,foreground="black")
 
     root_font_style = Tk()
-    root_font_style.geometry("250x250")
+    root_font_style.geometry("280x280")
     root_font_style.title("Font Styles")
     var = StringVar(root_font_style,"1")
 
@@ -63,6 +63,7 @@ def Sel_Font_Style():
     for i in fonts:
         Radiobutton(root_font_style, text=i, variable=var, value=i, command=fetch_font_style).pack(anchor=W)
     B=Button(root_font_style,text="OK",command=root_font_style.quit)
+
     B.pack(side=LEFT)
 
     B1=Button(root_font_style,text="Cancel",command=root_font_style.quit)
