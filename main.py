@@ -4,11 +4,15 @@ from tkinter.filedialog import asksaveasfilename,askopenfilename
 root=Tk()
 file_path=None
 savelocation=None
-font_style_name='Agave Nerd Font' #default font
+font_name='Agave Nerd Font' #default font
+font_size=14 #default font size
 
 def new():
     print("opening a new file")
     main()
+
+def close_window(window):
+    window.destroy()
 
 def open_file():
     print("opening an existing file")
@@ -45,12 +49,12 @@ def save():
         print(f"File saved to location: {file_path}")
 
 def Sel_Font_Style():
-    global font_style_name
+    global font_name
 
     def fetch_font_style():
-        font_style_name=var.get()
-        print(font_style_name)
-        Font_tuple=(font_style_name,15,"bold")
+        font_name=var.get()
+        print(font_name)
+        Font_tuple=(font_name,15,"bold")
         T.configure(font=Font_tuple,foreground="black")
 
     root_font_style = Tk()
@@ -62,15 +66,40 @@ def Sel_Font_Style():
 
     for i in fonts:
         Radiobutton(root_font_style, text=i, variable=var, value=i, command=fetch_font_style).pack(anchor=W)
-    B=Button(root_font_style,text="OK",command=root_font_style.quit)
 
+    B=Button(root_font_style,text="OK",command = lambda: close_window(root_font_style))
     B.pack(side=LEFT)
 
-    B1=Button(root_font_style,text="Cancel",command=root_font_style.quit)
+    B1=Button(root_font_style,text="Cancel",command = lambda: close_window(root_font_style))
     B1.pack(side=LEFT)
     
     root_font_style.mainloop()
 
+def Set_Font_Size():
+    global font_size
+
+    def Get_font_size():
+        font_size=font_fetch.get()
+        Font_tuple=(font_name,font_size,"bold")
+        T.configure(font=Font_tuple,foreground="black")
+        print(font_size)
+
+    root2=Tk()
+    root2.geometry("100x100")
+    name_var=IntVar(root2,14)
+    root2.title("Font Size")
+
+    font_fetch=Entry(root2,textvariable=name_var,justify=CENTER)
+    font_fetch.pack()
+
+    ok_button=Button(root2,text="Ok",command=Get_font_size)
+    ok_button.pack(side=LEFT)
+
+    cancel_button=Button(root2,text="Cancel",command = lambda: close_window(root2))
+    cancel_button.pack(side=RIGHT)
+
+    root2.mainloop()
+    
 def main():
     global T
     
@@ -89,19 +118,19 @@ def main():
     Options_Menu.add_command(label='Save',command=save)
     Options_Menu.add_command(label='Save As',command=saveAs)
     Options_Menu.add_separator()
-    Options_Menu.add_command(label='Exit',command=root.quit)
+    Options_Menu.add_command(label='Exit',command = lambda: close_window(root))
     
     Customize_Menu=Menu(menubar,tearoff=0)
     menubar.add_cascade(label="Customize",menu=Customize_Menu)
     Customize_Menu.add_command(label="Font Style",command=Sel_Font_Style)
-    Customize_Menu.add_command(label="Font Size")
+    Customize_Menu.add_command(label="Font Size",command=Set_Font_Size)
     Customize_Menu.add_command(label="BG Color")
     Customize_Menu.add_command(label="FG Color")
     
     T=Text(root,height=700,width=700,bg='#e2c6f1')
     T.grid(row=1, column=0, sticky='nsew')
 
-    Font_tuple=(font_style_name,15,"bold")
+    Font_tuple=(font_name,font_size,"bold")
     T.configure(font=Font_tuple,foreground="black")
 
     root.grid_rowconfigure(1, weight=1)
