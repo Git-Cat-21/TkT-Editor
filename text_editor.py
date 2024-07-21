@@ -1,5 +1,6 @@
 from tkinter import *
-from tkinter.filedialog import asksaveasfilename,askopenfilename,asksaveasfile
+from tkinter.filedialog import asksaveasfilename,askopenfilename
+
 root=Tk()
 file_path=None
 savelocation=None
@@ -32,7 +33,6 @@ def saveAs():
     print(f"File saved to location: {savelocation}")
     file_path=savelocation
     
-
 def save():
     global file_path
     print("Saving the file")
@@ -46,49 +46,22 @@ def save():
 
 def Sel_Font_Style():
     global font_style_name
+
     def fetch_font_style():
         font_style_name=var.get()
         print(font_style_name)
         Font_tuple=(font_style_name,15,"bold")
         T.configure(font=Font_tuple,foreground="black")
-        
-
 
     root_font_style = Tk()
     root_font_style.geometry("250x250")
     root_font_style.title("Font Styles")
     var = StringVar(root_font_style,"1")
 
-    R1 = Radiobutton(root_font_style, text="Arial", variable=var, value="Arial", command=fetch_font_style)
-    R1.pack(anchor=W)
+    fonts = ["Arial", "Times New Roman", "Helvetica", "Verdana", "Courier New", "Georgia", "Tahoma", "Garamond", "Comic Sans MS","Lucida Console"]
 
-    R2 = Radiobutton(root_font_style, text="Times New Roman", variable=var, value='Times New Roman', command=fetch_font_style)
-    R2.pack(anchor=W)
-
-    R3 = Radiobutton(root_font_style, text="Helvetica", variable=var, value="Helvetica", command=fetch_font_style)
-    R3.pack(anchor=W)
-
-    R4 = Radiobutton(root_font_style, text="Verdana", variable=var, value="Verdana", command=fetch_font_style)
-    R4.pack(anchor=W)
-
-    R5 = Radiobutton(root_font_style, text="Courier New", variable=var, value="Courier New", command=fetch_font_style)
-    R5.pack(anchor=W)
-
-    R6 = Radiobutton(root_font_style, text="Georgia", variable=var, value="Georgia", command=fetch_font_style)
-    R6.pack(anchor=W)
-
-    R7 = Radiobutton(root_font_style, text="Tahoma", variable=var, value="Tahoma", command=fetch_font_style)
-    R7.pack(anchor=W)
-
-    R8 = Radiobutton(root_font_style, text="Garamond", variable=var, value="Garamond", command=fetch_font_style)
-    R8.pack(anchor=W)
-
-    R9 = Radiobutton(root_font_style, text="Georgia", variable=var, value="Georgia", command=fetch_font_style)
-    R9.pack(anchor=W)
-
-    R10 = Radiobutton(root_font_style, text="Comic Sans MS", variable=var, value="Comic Sans MS", command=fetch_font_style)
-    R10.pack(anchor=W)
-
+    for i in fonts:
+        Radiobutton(root_font_style, text=i, variable=var, value=i, command=fetch_font_style).pack(anchor=W)
     B=Button(root_font_style,text="OK",command=root_font_style.quit)
     B.pack(side=LEFT)
 
@@ -106,9 +79,6 @@ def main():
     frame=Frame(root)
     frame.grid(row=0, column=0, sticky='e')
     
-    #creates menu object and stores it in menubar MAIN MENU BAR
-    #menu object called file submenu
-    #tearoff detach the menu from the main window and turn it into a separate window not detached
     menubar=Menu(root) 
     file=Menu(menubar,tearoff=0) 
 
