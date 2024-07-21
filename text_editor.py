@@ -3,6 +3,7 @@ from tkinter.filedialog import asksaveasfilename,askopenfilename,asksaveasfile
 root=Tk()
 file_path=None
 savelocation=None
+last_saved_index="1.0"
 def new():
     print("opening a new file")
     main()
@@ -17,6 +18,7 @@ def open_file():
             print(content)
             T.delete("1.0",END)
             T.insert("1.0",content)
+            last_saved_index="end-1c"
 
 def saveAs():
     t=T.get("1.0","end-1c")
@@ -32,20 +34,16 @@ def saveAs():
     
 
 def save():
-    global file_path
+    global file_path,last_saved_index
     print("Saving the file")
     if not file_path:
         saveAs()
     else:
-        with open(file_path,"r+") as file1:
-            count=0
-            while file1.read(1):
-                count=count+1
-            count-=1
-            t=T.get(count,"end-1c")
-            file1.write(t)
+        with open(file_path,"w") as file1:
+            t = T.get("1.0",END)  # Get new content from the last saved index
+            file1.write(t)  # Append the new content to the file
+          # Update the last saved index
         print(f"File saved to location: {file_path}")
-
 
 
 def main():
