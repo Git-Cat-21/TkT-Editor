@@ -38,9 +38,8 @@ def save():
         saveAs()
     else:
         with open(file_path,"w") as file1:
-            t = T.get("1.0",END)  # Get new content from the last saved index
-            file1.write(t)  # Append the new content to the file
-          # Update the last saved index
+            t = T.get("1.0",END)  
+            file1.write(t)  
         print(f"File saved to location: {file_path}")
 
 
