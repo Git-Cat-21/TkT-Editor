@@ -71,11 +71,23 @@ def Sel_Font_Style():
     R4 = Radiobutton(root_font_style, text="Verdana", variable=var, value="Verdana", command=fetch_font_style)
     R4.pack(anchor=W)
 
-    R5 = Radiobutton(root_font_style, text="Georgia", variable=var, value="Georgia", command=fetch_font_style)
+    R5 = Radiobutton(root_font_style, text="Courier New", variable=var, value="Courier New", command=fetch_font_style)
     R5.pack(anchor=W)
 
-    # frame=Frame(root_font_style)
-    # frame.pack(anchor=W)
+    R6 = Radiobutton(root_font_style, text="Georgia", variable=var, value="Georgia", command=fetch_font_style)
+    R6.pack(anchor=W)
+
+    R7 = Radiobutton(root_font_style, text="Tahoma", variable=var, value="Tahoma", command=fetch_font_style)
+    R7.pack(anchor=W)
+
+    R8 = Radiobutton(root_font_style, text="Garamond", variable=var, value="Garamond", command=fetch_font_style)
+    R8.pack(anchor=W)
+
+    R9 = Radiobutton(root_font_style, text="Georgia", variable=var, value="Georgia", command=fetch_font_style)
+    R9.pack(anchor=W)
+
+    R10 = Radiobutton(root_font_style, text="Comic Sans MS", variable=var, value="Comic Sans MS", command=fetch_font_style)
+    R10.pack(anchor=W)
 
     B=Button(root_font_style,text="OK",command=root_font_style.quit)
     B.pack(side=LEFT)
