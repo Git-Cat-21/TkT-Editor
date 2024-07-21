@@ -51,6 +51,7 @@ def Sel_Font_Style():
         print(font_style_name)
         Font_tuple=(font_style_name,15,"bold")
         T.configure(font=Font_tuple,foreground="black")
+        
 
 
     root_font_style = Tk()
@@ -72,8 +73,16 @@ def Sel_Font_Style():
 
     R5 = Radiobutton(root_font_style, text="Georgia", variable=var, value="Georgia", command=fetch_font_style)
     R5.pack(anchor=W)
-    B=Button(root_font_style,text="Cancel",command=root_font_style.quit)
-    B.pack(anchor=W)
+
+    # frame=Frame(root_font_style)
+    # frame.pack(anchor=W)
+
+    B=Button(root_font_style,text="OK",command=root_font_style.quit)
+    B.pack(side=LEFT)
+
+    B1=Button(root_font_style,text="Cancel",command=root_font_style.quit)
+    B1.pack(side=LEFT)
+    
     root_font_style.mainloop()
 
 def main():
