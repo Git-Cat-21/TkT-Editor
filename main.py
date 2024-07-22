@@ -133,6 +133,8 @@ def Sel_fg_color():
     button=Button(root_fg_color,text="Select Color",command=choose_color)
     button.pack()
     root_fg_color.mainloop()
+def clear_all():
+    T.delete("1.0",END)
 
 def main():
     global T
@@ -151,6 +153,7 @@ def main():
     Options_Menu.add_command(label='Open',command=open_file)
     Options_Menu.add_command(label='Save',command=save)
     Options_Menu.add_command(label='Save As',command=saveAs)
+    Options_Menu.add_command(label="Clear All",command=clear_all)
     Options_Menu.add_separator()
     Options_Menu.add_command(label='Exit',command = lambda: close_window(root))
     
