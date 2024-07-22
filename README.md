@@ -3,10 +3,11 @@
 ### Step-By-Step Guide :
 -   Use ```git clone https://github.com/Git-Cat-21/Text-Editor.git```  to make a copy of the project on your system
 -   Install the required dependencies if any using ```pip install (library name)```
--   Run the following command to start the program ```python main.py```
+-   Run the following command to start the program ```python main.py <filename (optional)>```
 -   The TkT Editor window should now be open. You can use the. Explore the TkT Editor and enjoy its features !!!
+
 --------------
-## Features :
+### Features :
 - **New File**: Opens a new blank file.
 - **Open File**: Opens an existing text file.
 - **Save**: Saves the current file.
