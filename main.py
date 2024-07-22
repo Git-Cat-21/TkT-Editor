@@ -4,14 +4,14 @@ from tkinter import colorchooser
 
 root=Tk()
 file_path=None
-savelocation=None
+save_location=None
 font_name='Agave Nerd Font' #default font
-font_size=14 #default font size
+font_size=15 #default font size
 color_hex_bg_code='#e2c6f1' #default bg color
 color_hex_fg_code='black' #default fg color
 
-def new():
-    print("opening a new file")
+def New():
+    print("Opening a new file")
     main()
 
 def close_window(window):
@@ -30,15 +30,15 @@ def open_file():
 
 def saveAs():
     t=T.get("1.0","end-1c")
-    global savelocation
+    global save_location
     global file_path 
     print("Save As")
-    savelocation=asksaveasfilename()
-    if savelocation:
-        with open(savelocation,"w+") as file1:
+    save_location=asksaveasfilename()
+    if save_location:
+        with open(save_location,"w+") as file1:
             file1.write(t)
-    print(f"File saved to location: {savelocation}")
-    file_path=savelocation
+    print(f"File saved to location: {save_location}")
+    file_path=save_location
     
 def save():
     global file_path
@@ -51,7 +51,7 @@ def save():
             file1.write(t)  
         print(f"File saved to location: {file_path}")
 
-def Sel_Font_Style():
+def Sel_font_style():
     def fetch_font_style():
         global font_name
         font_name=var.get()
@@ -77,7 +77,7 @@ def Sel_Font_Style():
     
     root_font_style.mainloop()
 
-def Set_Font_Size():
+def Set_font_size():
     
     def Get_font_size():
         global font_size
@@ -86,35 +86,45 @@ def Set_Font_Size():
         T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
         print(font_size)
 
-    root2=Tk()
-    root2.geometry("100x100")
-    name_var=IntVar(root2,14)
-    root2.title("Font Size")
+    root_font_size=Tk()
+    root_font_size.title("Set Font Size")
+    root_font_size.geometry("200x200")
+    root_font_size.configure(bg='#f0f0f0')
 
-    font_fetch=Entry(root2,textvariable=name_var,justify=CENTER)
-    font_fetch.pack()
+    Label(root_font_size,text="Enter Font Size:",bg="#f0f0f0",font=("Helvetica",12,"bold")).pack(pady=10)
 
-    ok_button=Button(root2,text="Ok",command=Get_font_size)
-    
-    ok_button.pack(side=LEFT)
+    name_var=IntVar(root_font_size,15)
+    font_fetch=Entry(root_font_size,textvariable=name_var,justify=CENTER,font=("Helvetica", 12))
+    font_fetch.pack(pady=5)
 
-    cancel_button=Button(root2,text="Cancel",command = lambda: close_window(root2))
-    cancel_button.pack(side=RIGHT)
+    button_frmae=Frame(root_font_size,bg='#f0f0f0')
+    button_frmae.pack(pady=10)
 
-    root2.mainloop()
+    ok_button=Button(root_font_size,text="OK",command=Get_font_size,font=("Helvetica", 10), bg='#4caf50', fg='white')
+    ok_button.pack(side=LEFT,padx=10)
+
+    cancel_button=Button(root_font_size,text="Cancel",command = lambda: close_window(root_font_size),font=("Helvetica", 10), bg='#f44336', fg='white')
+    cancel_button.pack(side=RIGHT,padx=10)
+
+    root_font_size.mainloop()
 
 def Sel_bg_color():
     
     def choose_color():
         global color_hex_bg_code
+
         color_code=colorchooser.askcolor(title="Choose color")
         color_hex_bg_code=color_code[1]
+
         print(color_hex_bg_code)
+
         Font_tuple=(font_name,font_size,"bold")
         T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
+
         print(color_hex_fg_code)
 
     root_bg_color=Tk()
+    root_bg_color.title("Select Background Color")
     button=Button(root_bg_color,text="Select Color",command=choose_color)
     button.pack()
     root_bg_color.mainloop()
@@ -123,10 +133,13 @@ def Sel_fg_color():
     
     def choose_color():
         global color_hex_fg_code
+
         color_code=colorchooser.askcolor(title="Choose color")
         color_hex_fg_code=color_code[1]
+
         Font_tuple=(font_name,font_size,"bold")
         T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
+
         print(color_hex_fg_code)
 
     root_fg_color=Tk()
@@ -139,7 +152,7 @@ def clear_all():
 def main():
     global T
     
-    root.title("Text editor")
+    root.title("TkT editor")
     root.geometry("700x700")
     
     frame=Frame(root)
@@ -149,18 +162,18 @@ def main():
     Options_Menu=Menu(menubar,tearoff=0) 
 
     menubar.add_cascade(label="Options", menu=Options_Menu)
-    Options_Menu.add_command(label="New",command=new)
-    Options_Menu.add_command(label='Open',command=open_file)
-    Options_Menu.add_command(label='Save',command=save)
-    Options_Menu.add_command(label='Save As',command=saveAs)
+    Options_Menu.add_command(label="New",command=New)
+    Options_Menu.add_command(label="Open",command=open_file)
+    Options_Menu.add_command(label="Save",command=save)
+    Options_Menu.add_command(label="Save As",command=saveAs)
     Options_Menu.add_command(label="Clear All",command=clear_all)
     Options_Menu.add_separator()
-    Options_Menu.add_command(label='Exit',command = lambda: close_window(root))
+    Options_Menu.add_command(label="Exit",command = lambda: close_window(root))
     
     Customize_Menu=Menu(menubar,tearoff=0)
     menubar.add_cascade(label="Customize",menu=Customize_Menu)
-    Customize_Menu.add_command(label="Font Style",command=Sel_Font_Style)
-    Customize_Menu.add_command(label="Font Size",command=Set_Font_Size)
+    Customize_Menu.add_command(label="Font Style",command=Sel_font_style)
+    Customize_Menu.add_command(label="Font Size",command=Set_font_size)
     Customize_Menu.add_command(label="BG Color",command=Sel_bg_color)
     Customize_Menu.add_command(label="FG Color",command=Sel_fg_color)
     
