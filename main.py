@@ -60,8 +60,8 @@ def Sel_font_style():
         T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
 
     root_font_style = Tk()
-    root_font_style.geometry("280x280")
-    root_font_style.title("Set Font Styles")
+    root_font_style.geometry("350x350")
+    root_font_style.title("Font Styles")
     root_font_style.configure(bg='#f0f0f0')
 
     Label(root_font_style,text="Select Font Size:",bg="#f0f0f0",font=("Helvetica",12,"bold")).pack(pady=10)
@@ -73,7 +73,7 @@ def Sel_font_style():
     for i in fonts:
         Radiobutton(root_font_style, text=i, variable=var, value=i, command=fetch_font_style).pack(anchor=W)
 
-    ok_button=Button(root_font_style,text="OK",command=fetch_font_style,font=("Helvetica", 10), bg='#4caf50', fg='white')
+    ok_button=Button(root_font_style,text="OK",command = lambda: close_window(root_font_style),font=("Helvetica", 10), bg='#4caf50', fg='white')
     ok_button.pack(side=LEFT,padx=10)
 
     Exit_button=Button(root_font_style,text="Exit",command = lambda: close_window(root_font_style),font=("Helvetica", 10), bg='#f44336', fg='white')
@@ -91,7 +91,7 @@ def Set_font_size():
         print(font_size)
 
     root_font_size=Tk()
-    root_font_size.title("Set Font Size")
+    root_font_size.title("Size")
     root_font_size.geometry("200x200")
     root_font_size.configure(bg='#f0f0f0')
 
@@ -128,7 +128,7 @@ def Sel_bg_color():
         print(color_hex_fg_code)
 
     root_bg_color=Tk()
-    root_bg_color.title("Select Background Color")
+    root_bg_color.title("BG")
     root_bg_color.geometry('200x200')
     root_bg_color.configure(background='#f0f0f0')
 
@@ -155,7 +155,7 @@ def Sel_fg_color():
         print(color_hex_fg_code)
 
     root_fg_color=Tk()
-    root_fg_color.title("Select Foreground Color")
+    root_fg_color.title("FG")
     root_fg_color.geometry('200x200')
     root_fg_color.configure(background='#f0f0f0')
 
@@ -175,7 +175,7 @@ def main():
     global T
     
     root.title("TkT editor")
-    root.geometry("700x700")
+    root.geometry("1920x1080")
     
     frame=Frame(root)
     frame.grid(row=0, column=0, sticky='e')
