@@ -1,11 +1,14 @@
 from tkinter import *
 from tkinter.filedialog import asksaveasfilename,askopenfilename
+from tkinter import colorchooser
 
 root=Tk()
 file_path=None
 savelocation=None
 font_name='Agave Nerd Font' #default font
 font_size=14 #default font size
+color_hex_bg_code='#e2c6f1' #default bg color
+color_hex_fg_code='black' #default fg color
 
 def new():
     print("opening a new file")
@@ -49,13 +52,12 @@ def save():
         print(f"File saved to location: {file_path}")
 
 def Sel_Font_Style():
-    global font_name
-
     def fetch_font_style():
+        global font_name
         font_name=var.get()
         print(font_name)
-        Font_tuple=(font_name,15,"bold")
-        T.configure(font=Font_tuple,foreground="black")
+        Font_tuple=(font_name,font_size,"bold")
+        T.configure(font=Font_tuple,foreground=color_hex_fg_code)
 
     root_font_style = Tk()
     root_font_style.geometry("280x280")
@@ -76,12 +78,12 @@ def Sel_Font_Style():
     root_font_style.mainloop()
 
 def Set_Font_Size():
-    global font_size
-
+    
     def Get_font_size():
+        global font_size
         font_size=font_fetch.get()
         Font_tuple=(font_name,font_size,"bold")
-        T.configure(font=Font_tuple,foreground="black")
+        T.configure(font=Font_tuple,foreground=color_hex_fg_code)
         print(font_size)
 
     root2=Tk()
@@ -93,13 +95,43 @@ def Set_Font_Size():
     font_fetch.pack()
 
     ok_button=Button(root2,text="Ok",command=Get_font_size)
+    
     ok_button.pack(side=LEFT)
 
     cancel_button=Button(root2,text="Cancel",command = lambda: close_window(root2))
     cancel_button.pack(side=RIGHT)
 
     root2.mainloop()
+
+# def Sel_bg_color():
+#     global color_hex_code
+#     def choose_color():
+#         color_code=colorchooser.askcolor(title="Choose color")
+#         color_hex_code=color_code[1]
+#         print(color_hex_code)
+#         T=Text(root,height=700,width=700,bg=color_hex_code)
+#         T.grid(row=1, column=0, sticky='nsew')
+
+#     root_bg_color=Tk()
+#     button=Button(root_bg_color,text="Select Color",command=choose_color)
+#     button.pack()
+#     root_bg_color.mainloop()
+
+def Sel_fg_color():
     
+    def choose_color():
+        global color_hex_fg_code
+        color_code=colorchooser.askcolor(title="Choose color")
+        color_hex_fg_code=color_code[1]
+        Font_tuple=(font_name,font_size,"bold")
+        T.configure(font=Font_tuple,foreground=color_hex_fg_code)
+        print(color_hex_fg_code)
+
+    root_fg_color=Tk()
+    button=Button(root_fg_color,text="Select Color",command=choose_color)
+    button.pack()
+    root_fg_color.mainloop()
+
 def main():
     global T
     
@@ -125,13 +157,13 @@ def main():
     Customize_Menu.add_command(label="Font Style",command=Sel_Font_Style)
     Customize_Menu.add_command(label="Font Size",command=Set_Font_Size)
     Customize_Menu.add_command(label="BG Color")
-    Customize_Menu.add_command(label="FG Color")
+    Customize_Menu.add_command(label="FG Color",command=Sel_fg_color)
     
-    T=Text(root,height=700,width=700,bg='#e2c6f1')
+    T=Text(root,height=700,width=700,bg=color_hex_bg_code)
     T.grid(row=1, column=0, sticky='nsew')
 
     Font_tuple=(font_name,font_size,"bold")
-    T.configure(font=Font_tuple,foreground="black")
+    T.configure(font=Font_tuple,foreground=color_hex_fg_code)
 
     root.grid_rowconfigure(1, weight=1)
     root.grid_columnconfigure(0, weight=1)
