@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter.filedialog import asksaveasfilename,askopenfilename
 from tkinter import colorchooser
+import sys
 
 root=Tk()
 file_path=None
@@ -18,15 +19,26 @@ def close_window(window):
     window.destroy()
 
 def Open_file():
-    print("opening an existing file")
     global file_path
-    file_path = askopenfilename()
-    if file_path:
-        with open(file_path, "r") as fileobj:
-            content = fileobj.read()
-            print(content)
-            T.delete("1.0",END)
-            T.insert("1.0",content)
+    
+    if(len(sys.argv) == 2):
+        file_path = sys.argv[1]
+        if file_path:
+            with open(file_path, "r") as fileobj:
+                content = fileobj.read()
+                print("file read succesfully")
+                T.delete("1.0",END)
+                T.insert("1.0",content)
+    
+    else:    
+        print("opening an existing file")
+        file_path = askopenfilename()
+        if file_path:
+            with open(file_path, "r") as fileobj:
+                content = fileobj.read()
+                print("file read succesfully")
+                T.delete("1.0",END)
+                T.insert("1.0",content)
 
 def saveAs():
     t=T.get("1.0","end-1c")
@@ -176,11 +188,15 @@ def Sel_fg_color():
     button.pack(pady=10)
 
     root_fg_color.mainloop()
+    
 def clear_all():
     T.delete("1.0",END)
 
 def main():
     global T
+    # global file_path
+    
+        
     
     root.title("TkT editor")
     root.geometry("1280x720")
@@ -221,6 +237,9 @@ def main():
     root.grid_columnconfigure(0, weight=1)
     root.config(menu=menubar)
 
+    if len(sys.argv) == 2 : 
+        Open_file()
+        
     root.mainloop()
 
 if __name__ == "__main__":
