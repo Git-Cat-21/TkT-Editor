@@ -51,6 +51,14 @@ def Save():
             file1.write(t)  
         print(f"File saved to location: {file_path}")
 
+def Open_ReadMe():
+    global file_path
+    file_path="README.md"
+    with open(file_path,"r") as file_ptr:
+        content=file_ptr.read()
+        T.delete("1.0",END)
+        T.insert("1.0",content)
+
 def Sel_font_style():
     def fetch_font_style():
         global font_name
@@ -101,8 +109,8 @@ def Set_font_size():
     font_fetch=Entry(root_font_size,textvariable=name_var,justify=CENTER,font=("Helvetica", 12))
     font_fetch.pack(pady=5)
 
-    button_frmae=Frame(root_font_size,bg='#f0f0f0')
-    button_frmae.pack(pady=10)
+    button_frame=Frame(root_font_size,bg='#f0f0f0')
+    button_frame.pack(pady=10)
 
     ok_button=Button(root_font_size,text="OK",command=Get_font_size,font=("Helvetica", 10), bg='#4caf50', fg='white')
     ok_button.pack(side=LEFT,padx=10)
@@ -175,7 +183,7 @@ def main():
     global T
     
     root.title("TkT editor")
-    root.geometry("1920x1080")
+    root.geometry("1280x720")
     
     frame=Frame(root)
     frame.grid(row=0, column=0, sticky='e')
@@ -198,6 +206,10 @@ def main():
     Customize_Menu.add_command(label="Font Size",command=Set_font_size)
     Customize_Menu.add_command(label="BG Color",command=Sel_bg_color)
     Customize_Menu.add_command(label="FG Color",command=Sel_fg_color)
+
+    Help_menu=Menu(menubar,tearoff=0)
+    menubar.add_cascade(label="Help",menu=Help_menu)
+    Help_menu.add_command(label="ReadMe",command=Open_ReadMe)
     
     T=Text(root,height=700,width=700)
     T.grid(row=1, column=0, sticky='nsew')
