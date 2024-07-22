@@ -5,7 +5,7 @@
 -   Install the required dependencies if any using ```pip install (library name)```
 -   Run the following command to start the program ```python main.py```
 -   The TkT Editor window should now be open. You can use the. Explore the TkT Editor and enjoy its features !!!
-
+--------------
 ## Features :
 - **New File**: Opens a new blank file.
 - **Open File**: Opens an existing text file.
