@@ -57,7 +57,7 @@ def Sel_Font_Style():
         font_name=var.get()
         print(font_name)
         Font_tuple=(font_name,font_size,"bold")
-        T.configure(font=Font_tuple,foreground=color_hex_fg_code)
+        T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
 
     root_font_style = Tk()
     root_font_style.geometry("280x280")
@@ -83,7 +83,7 @@ def Set_Font_Size():
         global font_size
         font_size=font_fetch.get()
         Font_tuple=(font_name,font_size,"bold")
-        T.configure(font=Font_tuple,foreground=color_hex_fg_code)
+        T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
         print(font_size)
 
     root2=Tk()
@@ -103,19 +103,21 @@ def Set_Font_Size():
 
     root2.mainloop()
 
-# def Sel_bg_color():
-#     global color_hex_code
-#     def choose_color():
-#         color_code=colorchooser.askcolor(title="Choose color")
-#         color_hex_code=color_code[1]
-#         print(color_hex_code)
-#         T=Text(root,height=700,width=700,bg=color_hex_code)
-#         T.grid(row=1, column=0, sticky='nsew')
+def Sel_bg_color():
+    
+    def choose_color():
+        global color_hex_bg_code
+        color_code=colorchooser.askcolor(title="Choose color")
+        color_hex_bg_code=color_code[1]
+        print(color_hex_bg_code)
+        Font_tuple=(font_name,font_size,"bold")
+        T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
+        print(color_hex_fg_code)
 
-#     root_bg_color=Tk()
-#     button=Button(root_bg_color,text="Select Color",command=choose_color)
-#     button.pack()
-#     root_bg_color.mainloop()
+    root_bg_color=Tk()
+    button=Button(root_bg_color,text="Select Color",command=choose_color)
+    button.pack()
+    root_bg_color.mainloop()
 
 def Sel_fg_color():
     
@@ -124,7 +126,7 @@ def Sel_fg_color():
         color_code=colorchooser.askcolor(title="Choose color")
         color_hex_fg_code=color_code[1]
         Font_tuple=(font_name,font_size,"bold")
-        T.configure(font=Font_tuple,foreground=color_hex_fg_code)
+        T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
         print(color_hex_fg_code)
 
     root_fg_color=Tk()
@@ -156,14 +158,14 @@ def main():
     menubar.add_cascade(label="Customize",menu=Customize_Menu)
     Customize_Menu.add_command(label="Font Style",command=Sel_Font_Style)
     Customize_Menu.add_command(label="Font Size",command=Set_Font_Size)
-    Customize_Menu.add_command(label="BG Color")
+    Customize_Menu.add_command(label="BG Color",command=Sel_bg_color)
     Customize_Menu.add_command(label="FG Color",command=Sel_fg_color)
     
-    T=Text(root,height=700,width=700,bg=color_hex_bg_code)
+    T=Text(root,height=700,width=700)
     T.grid(row=1, column=0, sticky='nsew')
 
     Font_tuple=(font_name,font_size,"bold")
-    T.configure(font=Font_tuple,foreground=color_hex_fg_code)
+    T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
 
     root.grid_rowconfigure(1, weight=1)
     root.grid_columnconfigure(0, weight=1)
