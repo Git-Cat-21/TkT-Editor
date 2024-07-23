@@ -1,3 +1,6 @@
 F1 : display this menu
+
 ctrl+o : open an existing file
 ctrl+n : open an new file
+ctrl+s : save a file
+ctrl+l  : clear screen

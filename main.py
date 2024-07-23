@@ -75,11 +75,13 @@ def Open_ReadMe(event=None):
 def Open_Shortcuts(event=None):
     shortcut = Tk()
     shortcut.title("Key Shortcuts")
-    shortcut.geometry("300x300")
+    shortcut.geometry("300x250")
     with open("assets/shortcut.txt", "r") as w:
         content = w.read()
     # print(content)
-    Label(shortcut,text=content, justify="left").pack()
+    Label(shortcut,text=content, justify="left",font=("Helvetica",12,"italic")).pack()
+    Exit_button=Button(shortcut,text="Exit",command = lambda: close_window(shortcut),font=("Helvetica", 10), bg='#f44336', fg='white')
+    Exit_button.pack(padx=10)
     shortcut.configure()
     shortcut.mainloop()
 
@@ -250,7 +252,7 @@ def main():
     Help_menu=Menu(menubar,tearoff=0)
     menubar.add_cascade(label="Help",menu=Help_menu)
     Help_menu.add_command(label="ReadMe",command=Open_ReadMe)
-    Help_menu.add_command(label="Shortcuts",command=Open_Shortcuts)
+    Help_menu.add_command(label="Shortcuts F1",command=Open_Shortcuts)
     root.bind('<F1>',Open_Shortcuts)
     
     T=Text(root,height=700,width=700)
