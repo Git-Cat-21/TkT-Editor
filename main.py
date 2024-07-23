@@ -72,6 +72,17 @@ def Open_ReadMe(event=None):
         T.delete("1.0",END)
         T.insert("1.0",content)
 
+def Open_Shortcuts(event=None):
+    shortcut = Tk()
+    shortcut.title("Key Shortcuts")
+    shortcut.geometry("300x300")
+    with open("assets/shortcut.txt", "r") as w:
+        content = w.read()
+    # print(content)
+    Label(shortcut,text=content, justify="left").pack()
+    shortcut.configure()
+    shortcut.mainloop()
+
 def Sel_font_style():
     def fetch_font_style():
         global font_name
@@ -196,8 +207,6 @@ def clear_all(self):
 def main():
     global T
     # global file_path
-        
-        
     
     root.title("TkT editor")
     root.geometry("1280x720")
@@ -213,13 +222,13 @@ def main():
 
     menubar.add_cascade(label="Options", menu=Options_Menu)
     
-    Options_Menu.add_command(label="New  ctrl+n",command=New)
+    Options_Menu.add_command(label="New    ctrl+n",command=New)
     root.bind('<Control-n>', New)
         
     Options_Menu.add_command(label="Open  ctrl+o",command=Open_file)
     root.bind('<Control-o>', Open_file)
     
-    Options_Menu.add_command(label="Save  ctrl+s",command=Save)
+    Options_Menu.add_command(label="Save   ctrl+s",command=Save)
     root.bind('<Control-s>', Save)
     
     Options_Menu.add_command(label="Save As",command=saveAs)
@@ -241,6 +250,8 @@ def main():
     Help_menu=Menu(menubar,tearoff=0)
     menubar.add_cascade(label="Help",menu=Help_menu)
     Help_menu.add_command(label="ReadMe",command=Open_ReadMe)
+    Help_menu.add_command(label="Shortcuts",command=Open_Shortcuts)
+    root.bind('<F1>',Open_Shortcuts)
     
     T=Text(root,height=700,width=700)
     T.focus_set()
