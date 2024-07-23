@@ -108,7 +108,7 @@ def Sel_font_style():
         T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
 
     root_font_style = Tk()
-    root_font_style.geometry("350x350")
+    root_font_style.geometry("350x400")
     root_font_style.title("Font Styles")
     root_font_style.configure(bg='#f0f0f0')
 
