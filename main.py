@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter.filedialog import asksaveasfilename,askopenfilename
 from tkinter import colorchooser
 import sys
+import keyboard
 
 root=Tk()
 file_path=None
@@ -11,14 +12,14 @@ font_size=15 #default font size
 color_hex_bg_code='#e2c6f1' #default bg color
 color_hex_fg_code='black' #default fg color
 
-def New():
+def New(self):
     print("Opening a new file")
     main()
 
 def close_window(window):
     window.destroy()
 
-def Open_file():
+def Open_file(self):
     global file_path
     
     if(len(sys.argv) == 2):
@@ -195,7 +196,7 @@ def clear_all():
 def main():
     global T
     # global file_path
-    
+        
         
     
     root.title("TkT editor")
@@ -206,10 +207,22 @@ def main():
     
     menubar=Menu(root) 
     Options_Menu=Menu(menubar,tearoff=0) 
+    
 
     menubar.add_cascade(label="Options", menu=Options_Menu)
-    Options_Menu.add_command(label="New",command=New)
-    Options_Menu.add_command(label="Open",command=Open_file)
+    
+    def Control_n():
+        New()
+    
+    def Control_o():
+        Open_file()
+    
+    Options_Menu.add_command(label="New  ctrl+n",command=Control_n)
+    root.bind('<Control-n>', New)
+        
+    Options_Menu.add_command(label="Open  ctrl+o",command=Control_o)
+    root.bind('<Control-o>', Open_file)
+    
     Options_Menu.add_command(label="Save",command=Save)
     Options_Menu.add_command(label="Save As",command=saveAs)
     Options_Menu.add_command(label="Clear Screen",command=clear_all)
