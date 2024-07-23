@@ -8,7 +8,7 @@ pip install -r requirements.txt
 python main.py
 ```
 
--   The TkT Editor window should now be open. You can use the. Explore the TkT Editor and enjoy its features !!!
+-   The TkT Editor window should now be open. You can use the. Explore the TkT Editor and enjoy its features
 
 --------------
 ### Features :
