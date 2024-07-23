@@ -1,4 +1,4 @@
-# TkT Editor (Tkinter Text Editor)
+# TkT Editor
 ---------------
 ### Usage :
 
