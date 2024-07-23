@@ -65,7 +65,7 @@ def Save(event=None):
             file1.write(t)  
         print(f"File saved to location: {file_path}")
         
-def check(event=None):
+def spell_check(event=None):
     spell = SpellChecker()
     misspelled = T.get("1.0",END)
     words = misspelled.split()
@@ -73,7 +73,9 @@ def check(event=None):
     for i in words:
         correction.append(spell.correction(i))
     corrected_string = ' '.join(correction)
-    print(corrected_string)
+    # print(corrected_string)
+    T.delete('1.0',END)
+    T.insert(END, corrected_string)
     # print(t)
 
 def Open_ReadMe(event=None):
@@ -87,7 +89,7 @@ def Open_ReadMe(event=None):
 def Open_Shortcuts(event=None):
     shortcut = Tk()
     shortcut.title("Key Shortcuts")
-    shortcut.geometry("300x250")
+    shortcut.geometry("320x280")
     with open("assets/shortcut.txt", "r") as w:
         content = w.read()
     # print(content)
@@ -222,7 +224,7 @@ def main():
     global T
     # global file_path
     
-    root.title("TkT editor")
+    root.title("『Tk』Ed")
     root.geometry("1280x720")
     
     frame=Frame(root)
@@ -245,12 +247,14 @@ def main():
     Options_Menu.add_command(label="Save   ctrl+s",command=Save)
     root.bind('<Control-s>', Save)
     
-    Options_Menu.add_command(label="check", command=check)
     
-    Options_Menu.add_command(label="Save As",command=saveAs)
+    Options_Menu.add_command(label="SaveAs",command=saveAs)
     # root.bind('<Control-Shift-s>', saveAs)
     
-    Options_Menu.add_command(label="Clear Screen  ctrl+l",command=clear_all)
+    Options_Menu.add_command(label="check   F7", command=spell_check)
+    root.bind('<F7>',spell_check)
+    
+    Options_Menu.add_command(label="ClearScreen  ctrl+l",command=clear_all)
     root.bind('<Control-l>',clear_all)
     
     Options_Menu.add_separator()
@@ -258,6 +262,7 @@ def main():
     
     Customize_Menu=Menu(menubar,tearoff=0)
     menubar.add_cascade(label="Customize",menu=Customize_Menu)
+    
     Customize_Menu.add_command(label="Font Style",command=Sel_font_style)
     Customize_Menu.add_command(label="Font Size",command=Set_font_size)
     Customize_Menu.add_command(label="BG Color",command=Sel_bg_color)

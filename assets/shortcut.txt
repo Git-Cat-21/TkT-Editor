@@ -1,4 +1,5 @@
 F1 : display this menu
+F7 : auto-correct
 
 ctrl+o : open an existing file
 ctrl+n : open an new file
