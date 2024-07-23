@@ -4,6 +4,7 @@ from tkinter import colorchooser
 import sys
 import keyboard
 
+
 root=Tk()
 file_path=None
 save_location=None
@@ -12,14 +13,14 @@ font_size=15 #default font size
 color_hex_bg_code='#e2c6f1' #default bg color
 color_hex_fg_code='black' #default fg color
 
-def New(self):
+def New(event=None):
     print("Opening a new file")
     main()
 
 def close_window(window):
     window.destroy()
 
-def Open_file(self):
+def Open_file(event=None):
     global file_path
     
     if(len(sys.argv) == 2):
@@ -41,7 +42,7 @@ def Open_file(self):
                 T.delete("1.0",END)
                 T.insert("1.0",content)
 
-def saveAs():
+def saveAs(event=None):
     t=T.get("1.0","end-1c")
     global save_location
     global file_path 
@@ -53,7 +54,7 @@ def saveAs():
     print(f"File saved to location: {save_location}")
     file_path=save_location
     
-def Save():
+def Save(event=None):
     global file_path
     print("Saving the file")
     if not file_path:
@@ -64,7 +65,7 @@ def Save():
             file1.write(t)  
         print(f"File saved to location: {file_path}")
 
-def Open_ReadMe():
+def Open_ReadMe(event=None):
     global file_path
     file_path="README.md"
     with open(file_path,"r") as file_ptr:
@@ -190,7 +191,7 @@ def Sel_fg_color():
 
     root_fg_color.mainloop()
     
-def clear_all():
+def clear_all(self):
     T.delete("1.0",END)
 
 def main():
@@ -207,25 +208,27 @@ def main():
     
     menubar=Menu(root) 
     Options_Menu=Menu(menubar,tearoff=0) 
+    # menubar.bind('<Alt-1>', Options_Menu)
+
     
 
     menubar.add_cascade(label="Options", menu=Options_Menu)
     
-    def Control_n():
-        New()
-    
-    def Control_o():
-        Open_file()
-    
-    Options_Menu.add_command(label="New  ctrl+n",command=Control_n)
+    Options_Menu.add_command(label="New  ctrl+n",command=New)
     root.bind('<Control-n>', New)
         
-    Options_Menu.add_command(label="Open  ctrl+o",command=Control_o)
+    Options_Menu.add_command(label="Open  ctrl+o",command=Open_file)
     root.bind('<Control-o>', Open_file)
     
-    Options_Menu.add_command(label="Save",command=Save)
+    Options_Menu.add_command(label="Save  ctrl+s",command=Save)
+    root.bind('<Control-s>', Save)
+    
     Options_Menu.add_command(label="Save As",command=saveAs)
-    Options_Menu.add_command(label="Clear Screen",command=clear_all)
+    # root.bind('<Control-Shift-s>', saveAs)
+    
+    Options_Menu.add_command(label="Clear Screen  ctrl+l",command=clear_all)
+    root.bind('<Control-l>',clear_all)
+    
     Options_Menu.add_separator()
     Options_Menu.add_command(label="Exit",command = lambda: close_window(root))
     
@@ -257,3 +260,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
