@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter.filedialog import asksaveasfilename,askopenfilename
 from tkinter import colorchooser
+from spellchecker import SpellChecker
 import sys
 
 
@@ -63,6 +64,17 @@ def Save(event=None):
             t = T.get("1.0",END)  
             file1.write(t)  
         print(f"File saved to location: {file_path}")
+        
+def check(event=None):
+    spell = SpellChecker()
+    misspelled = T.get("1.0",END)
+    words = misspelled.split()
+    correction = []
+    for i in words:
+        correction.append(spell.correction(i))
+    corrected_string = ' '.join(correction)
+    print(corrected_string)
+    # print(t)
 
 def Open_ReadMe(event=None):
     global file_path
@@ -233,6 +245,8 @@ def main():
     Options_Menu.add_command(label="Save   ctrl+s",command=Save)
     root.bind('<Control-s>', Save)
     
+    Options_Menu.add_command(label="check", command=check)
+    
     Options_Menu.add_command(label="Save As",command=saveAs)
     # root.bind('<Control-Shift-s>', saveAs)
     
@@ -262,8 +276,6 @@ def main():
     Font_tuple=(font_name,font_size,"bold")
     T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
     
-    t=T.get("1.0","end-1c")
-    print(t)
 
     root.grid_rowconfigure(1, weight=1)
     root.grid_columnconfigure(0, weight=1)
