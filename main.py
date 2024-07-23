@@ -1,7 +1,9 @@
 from tkinter import *
 from tkinter.filedialog import asksaveasfilename,askopenfilename
 from tkinter import colorchooser
+from spellchecker import SpellChecker
 import sys
+
 
 root=Tk()
 file_path=None
@@ -11,14 +13,14 @@ font_size=15 #default font size
 color_hex_bg_code='#e2c6f1' #default bg color
 color_hex_fg_code='black' #default fg color
 
-def New():
+def New(event=None):
     print("Opening a new file")
     main()
 
 def close_window(window):
     window.destroy()
 
-def Open_file():
+def Open_file(event=None):
     global file_path
     
     if(len(sys.argv) == 2):
@@ -40,7 +42,7 @@ def Open_file():
                 T.delete("1.0",END)
                 T.insert("1.0",content)
 
-def saveAs():
+def saveAs(event=None):
     t=T.get("1.0","end-1c")
     global save_location
     global file_path 
@@ -52,7 +54,7 @@ def saveAs():
     print(f"File saved to location: {save_location}")
     file_path=save_location
     
-def Save():
+def Save(event=None):
     global file_path
     print("Saving the file")
     if not file_path:
@@ -62,14 +64,40 @@ def Save():
             t = T.get("1.0",END)  
             file1.write(t)  
         print(f"File saved to location: {file_path}")
+        
+def spell_check(event=None):
+    spell = SpellChecker()
+    misspelled = T.get("1.0",END)
+    words = misspelled.split()
+    correction = []
+    for i in words:
+        correction.append(spell.correction(i))
+    corrected_string = ' '.join(correction)
+    # print(corrected_string)
+    T.delete('1.0',END)
+    T.insert(END, corrected_string)
+    # print(t)
 
-def Open_ReadMe():
+def Open_ReadMe(event=None):
     global file_path
     file_path="README.md"
     with open(file_path,"r") as file_ptr:
         content=file_ptr.read()
         T.delete("1.0",END)
         T.insert("1.0",content)
+
+def Open_Shortcuts(event=None):
+    shortcut = Tk()
+    shortcut.title("Key Shortcuts")
+    shortcut.geometry("320x280")
+    with open("assets/shortcut.txt", "r") as w:
+        content = w.read()
+    # print(content)
+    Label(shortcut,text=content, justify="left",font=("Helvetica",12,"italic")).pack()
+    Exit_button=Button(shortcut,text="Exit",command = lambda: close_window(shortcut),font=("Helvetica", 10), bg='#f44336', fg='white')
+    Exit_button.pack(padx=10)
+    shortcut.configure()
+    shortcut.mainloop()
 
 def Sel_font_style():
     def fetch_font_style():
@@ -80,7 +108,7 @@ def Sel_font_style():
         T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
 
     root_font_style = Tk()
-    root_font_style.geometry("350x350")
+    root_font_style.geometry("350x400")
     root_font_style.title("Font Styles")
     root_font_style.configure(bg='#f0f0f0')
 
@@ -189,16 +217,14 @@ def Sel_fg_color():
 
     root_fg_color.mainloop()
     
-def clear_all():
+def clear_all(self):
     T.delete("1.0",END)
 
 def main():
     global T
     # global file_path
     
-        
-    
-    root.title("TkT editor")
+    root.title("『Tk』Ed")
     root.geometry("1280x720")
     
     frame=Frame(root)
@@ -206,18 +232,37 @@ def main():
     
     menubar=Menu(root) 
     Options_Menu=Menu(menubar,tearoff=0) 
+    # menubar.bind('<Alt-1>', Options_Menu)
+
+    
 
     menubar.add_cascade(label="Options", menu=Options_Menu)
-    Options_Menu.add_command(label="New",command=New)
-    Options_Menu.add_command(label="Open",command=Open_file)
-    Options_Menu.add_command(label="Save",command=Save)
-    Options_Menu.add_command(label="Save As",command=saveAs)
-    Options_Menu.add_command(label="Clear Screen",command=clear_all)
+    
+    Options_Menu.add_command(label="New    ctrl+n",command=New)
+    root.bind('<Control-n>', New)
+        
+    Options_Menu.add_command(label="Open  ctrl+o",command=Open_file)
+    root.bind('<Control-o>', Open_file)
+    
+    Options_Menu.add_command(label="Save   ctrl+s",command=Save)
+    root.bind('<Control-s>', Save)
+    
+    
+    Options_Menu.add_command(label="SaveAs",command=saveAs)
+    # root.bind('<Control-Shift-s>', saveAs)
+    
+    Options_Menu.add_command(label="check   F7", command=spell_check)
+    root.bind('<F7>',spell_check)
+    
+    Options_Menu.add_command(label="ClearScreen  ctrl+l",command=clear_all)
+    root.bind('<Control-l>',clear_all)
+    
     Options_Menu.add_separator()
     Options_Menu.add_command(label="Exit",command = lambda: close_window(root))
     
     Customize_Menu=Menu(menubar,tearoff=0)
     menubar.add_cascade(label="Customize",menu=Customize_Menu)
+    
     Customize_Menu.add_command(label="Font Style",command=Sel_font_style)
     Customize_Menu.add_command(label="Font Size",command=Set_font_size)
     Customize_Menu.add_command(label="BG Color",command=Sel_bg_color)
@@ -226,12 +271,16 @@ def main():
     Help_menu=Menu(menubar,tearoff=0)
     menubar.add_cascade(label="Help",menu=Help_menu)
     Help_menu.add_command(label="ReadMe",command=Open_ReadMe)
+    Help_menu.add_command(label="Shortcuts F1",command=Open_Shortcuts)
+    root.bind('<F1>',Open_Shortcuts)
     
     T=Text(root,height=700,width=700)
+    T.focus_set()
     T.grid(row=1, column=0, sticky='nsew')
 
     Font_tuple=(font_name,font_size,"bold")
     T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
+    
 
     root.grid_rowconfigure(1, weight=1)
     root.grid_columnconfigure(0, weight=1)
@@ -244,3 +293,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
