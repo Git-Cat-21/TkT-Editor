@@ -219,6 +219,9 @@ def Sel_fg_color():
     
 def clear_all(self):
     T.delete("1.0",END)
+    
+def find_and_replace(event=None):
+    pass
 
 def main():
     global T
@@ -236,7 +239,7 @@ def main():
 
     
 
-    menubar.add_cascade(label="Options", menu=Options_Menu)
+    menubar.add_cascade(label="File", menu=Options_Menu)
     
     Options_Menu.add_command(label="New    ctrl+n",command=New)
     root.bind('<Control-n>', New)
@@ -259,6 +262,10 @@ def main():
     
     Options_Menu.add_separator()
     Options_Menu.add_command(label="Exit",command = lambda: close_window(root))
+    
+    Edit_Menu=Menu(menubar,tearoff=0)
+    menubar.add_cascade(label="Edit",menu=Edit_Menu)
+    Edit_Menu.add_command(label="Find and Replace",command=find_and_replace)
     
     Customize_Menu=Menu(menubar,tearoff=0)
     menubar.add_cascade(label="Customize",menu=Customize_Menu)
