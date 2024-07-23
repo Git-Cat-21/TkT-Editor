@@ -2,7 +2,6 @@ from tkinter import *
 from tkinter.filedialog import asksaveasfilename,askopenfilename
 from tkinter import colorchooser
 import sys
-import keyboard
 
 
 root=Tk()
@@ -244,6 +243,7 @@ def main():
     Help_menu.add_command(label="ReadMe",command=Open_ReadMe)
     
     T=Text(root,height=700,width=700)
+    T.focus_set()
     T.grid(row=1, column=0, sticky='nsew')
 
     Font_tuple=(font_name,font_size,"bold")
