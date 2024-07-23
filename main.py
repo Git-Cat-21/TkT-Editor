@@ -261,6 +261,9 @@ def main():
 
     Font_tuple=(font_name,font_size,"bold")
     T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
+    
+    t=T.get("1.0","end-1c")
+    print(t)
 
     root.grid_rowconfigure(1, weight=1)
     root.grid_columnconfigure(0, weight=1)
