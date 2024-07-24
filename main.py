@@ -96,7 +96,6 @@ def Open_Shortcuts(event=None):
     shortcut.geometry("320x280")
     with open("assets/shortcut.txt", "r") as w:
         content = w.read()
-    # print(content)
     Label(shortcut,text=content, justify="left",font=("Helvetica",12,"italic")).pack()
     Exit_button=Button(shortcut,text="Exit",command = lambda: close_window(shortcut),font=("Helvetica", 10), bg='#f44336', fg='white')
     Exit_button.pack(padx=10)
@@ -276,8 +275,6 @@ def find_and_replace(event=None):
         else:
             print(f"Word '{find_word}' not found")
 
-
-
     def replace_all():
         info = T.get("1.0", "end-1c")
         find_word = find_var.get()
@@ -325,19 +322,13 @@ def find_and_replace(event=None):
 
     root_find_replace.mainloop()
 
-def show_file_menu(event=None):
-    x = root.winfo_rootx() + 50
-    y = root.winfo_rooty() + 50
-    Options_Menu.post(x, y)
-
 
 def main():
     global T
-    # global file_path
     
     root.title("『Tk』Ed")
     root.geometry("1280x720")
-    
+     
     frame=Frame(root)
     frame.grid(row=0, column=0, sticky='e')
     
