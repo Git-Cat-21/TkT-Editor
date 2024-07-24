@@ -24,10 +24,8 @@ def New(event=None):
 def close_window(window):
     window.destroy()
 
-def Open_file(event=None):
-    global file_path
-    if(len(sys.argv) == 2):
-        file_path = sys.argv[1]
+def Fetch_file_path(event=None):
+    def Open_file(file_path):
         if file_path:
             with open(file_path, "r") as fileobj:
                 content = fileobj.read()
@@ -35,17 +33,17 @@ def Open_file(event=None):
                 T.delete("1.0",END)
                 T.insert("1.0",content)
                 notification("Opened file successfully")
+
+    global file_path
+    if(len(sys.argv) == 2):
+        file_path = sys.argv[1]
+        Open_file(file_path)
                 
     else:    
         print("opening an existing file")
         file_path = askopenfilename()
-        if file_path:
-            with open(file_path, "r") as fileobj:
-                content = fileobj.read()
-                print("file read succesfully")
-                T.delete("1.0",END)
-                T.insert("1.0",content)
-                notification("Opened file successfully")
+        Open_file(file_path)
+                
 
 def saveAs(event=None):
     t=T.get("1.0","end-1c")
@@ -348,8 +346,8 @@ def main():
     Options_Menu.add_command(label="New    ctrl+n",command=New)
     root.bind('<Control-n>', New)
         
-    Options_Menu.add_command(label="Open  ctrl+o",command=Open_file)
-    root.bind('<Control-o>', Open_file)
+    Options_Menu.add_command(label="Open  ctrl+o",command=Fetch_file_path)
+    root.bind('<Control-o>', Fetch_file_path)
     
     Options_Menu.add_command(label="Save   ctrl+s",command=Save)
     root.bind('<Control-s>', Save)
@@ -396,7 +394,7 @@ def main():
     root.config(menu=menubar)
 
     if len(sys.argv) == 2 : 
-        Open_file()
+        Fetch_file_path()
         
     root.mainloop()
 
