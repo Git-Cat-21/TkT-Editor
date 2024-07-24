@@ -223,14 +223,20 @@ def clear_all(self):
     
 def find_and_replace(event=None):
     def check_find_word():
-        info = T.get("1.0", "end-1c")
-        find_word = find_var.get()
-        if find_word in info:
-            position = info.find(find_word)
-            print(f"Word '{find_word}' found at position {position}")
-        else:
-            print(f"Word '{find_word}' not found")
-            
+        T.tag_remove("highlight","1.0",END)
+        info=T.get("1.0","end-1c")
+        find_word=find_var.get()
+
+        start_index="1.0"
+        while True:
+            start_index=T.search(find_word,start_index,nocase=1,stopindex='end')
+            if not start_index:
+                break
+            end_index=f"{start_index}+{len(find_word)}c"   
+            T.tag_add("highlight",start_index,end_index)
+            start_index=end_index
+
+        T.tag_configure("highlight",background="yellow")         
     def replace_word():
         info = T.get("1.0", "end-1c")
         find_word = find_var.get()
