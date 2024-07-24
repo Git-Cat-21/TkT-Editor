@@ -3,10 +3,11 @@ from tkinter.filedialog import asksaveasfilename,askopenfilename
 from tkinter import colorchooser,messagebox
 from spellchecker import SpellChecker
 import sys
-from file_functions import *
 from widget_registry import register_widget
-from customize_functions import *
+from file_functions import *
 from edit_functions import *
+from customize_functions import *
+from help_functions import *
 
 root=Tk()
 
