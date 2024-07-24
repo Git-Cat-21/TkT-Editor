@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter.filedialog import asksaveasfilename,askopenfilename
-from tkinter import colorchooser
+from tkinter import colorchooser,messagebox
 from spellchecker import SpellChecker
 import sys
 
@@ -235,13 +235,39 @@ def find_and_replace(event=None):
         info = T.get("1.0", "end-1c")
         find_word = find_var.get()
         rep_word = replace_var.get()
+
         if find_word in info:
-            info = info.replace(find_word, rep_word, 1)
-            T.delete("1.0", END)
-            T.insert("1.0", info)
-            print(f"Replaced the occurrence of '{find_word}' with '{rep_word}'")
+            pos=0
+            while True:
+                pos=info.find(find_word,pos)
+                if pos ==-1:
+                    break
+
+                T.tag_remove('highlight','1.0',END)
+                start_pos = f"1.0 + {pos} chars"
+                end_pos = f"1.0 + {pos + len(find_word)} chars"
+                T.tag_add('highlight',start_pos,end_pos)
+                T.tag_config('highlight',background="yellow")
+
+                T.see(start_pos)
+                T.mark_set("insert",end_pos)
+                T.focus()
+
+                if messagebox.askyesno("Replace",f"Do you want to replace '{find_word}' and '{rep_word}'?"):
+                    info = info[:pos] + rep_word + info[pos + len(find_word):]
+                    pos += len(rep_word)
+                else:
+                    pos+=len(find_word)
+
+                T.delete("1.0",END)
+                T.insert("1.0",info)
+                T.tag_remove("highlight","1.0",END)
+
+            print(f"Finished replacing occurrences of '{find_word}'")
         else:
             print(f"Word '{find_word}' not found")
+
+
 
     def replace_all():
         info = T.get("1.0", "end-1c")
