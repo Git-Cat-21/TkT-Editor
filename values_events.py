@@ -1,4 +1,6 @@
 from tkinter import *
+from widget_registry import get_widget
+from tkinter.filedialog import asksaveasfilename,askopenfilename
 file_path=None
 save_location=None
 font_name='Agave Nerd Font' #default font
@@ -6,6 +8,7 @@ font_size=15 #default font size
 color_hex_bg_code='#e2c6f1' #default bg color
 color_hex_fg_code='black' #default fg color
 rep_word=None
+
 
 def notification(message):
     root_destroy=Tk()
@@ -41,3 +44,40 @@ def Open_Shortcuts(event=None):
     Exit_button.pack(padx=10)
     shortcut.configure()
     shortcut.mainloop()
+
+def saveAs(event=None):
+    T=get_widget('text_widget')
+    t=T.get("1.0","end-1c")
+    global save_location
+    global file_path 
+    print("Save As")
+    save_location=asksaveasfilename()
+    if save_location:
+        with open(save_location,"w+") as file1:
+            file1.write(t)
+    print(f"File saved to location: {save_location}")
+    file_path=save_location
+    notification("File saved successfully")
+
+def Open_ReadMe(event=None):
+    T=get_widget('text_widget')
+    global file_path
+    file_path="README.md"
+    with open(file_path,"r") as file_ptr:
+        content=file_ptr.read()
+        T.delete("1.0",END)
+        T.insert("1.0",content)
+
+def Save(event=None):
+    global file_path
+    T=get_widget('text_widget')
+    file_path = askopenfilename()
+    print("Saving the file")
+    if not file_path:
+        saveAs()
+    else:
+        with open(file_path,"w") as file1:
+            t = T.get("1.0",END)  
+            file1.write(t)  
+        print(f"File saved to location: {file_path}")
+        notification("File saved successfully")
