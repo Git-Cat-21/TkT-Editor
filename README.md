@@ -26,3 +26,4 @@ python main.py
 ### ToDO :
 - [x] Find and Replace
 - [ ] clipboard feature 
+- [ ] letter and word count
