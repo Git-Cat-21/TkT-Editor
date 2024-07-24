@@ -3,26 +3,15 @@ from tkinter.filedialog import asksaveasfilename,askopenfilename
 from tkinter import colorchooser,messagebox
 from spellchecker import SpellChecker
 import sys
-from notification import *
-
+from values_events import *
 
 root=Tk()
-file_path=None
-save_location=None
-font_name='Agave Nerd Font' #default font
-font_size=15 #default font size
-color_hex_bg_code='#e2c6f1' #default bg color
-color_hex_fg_code='black' #default fg color
-rep_word=None
 
 def New(event=None):
     print("Opening a new file")
     notification("New File")
     main()
 
-
-def close_window(window):
-    window.destroy()
 
 def Fetch_file_path(event=None):
     def Open_file(file_path):
@@ -44,7 +33,6 @@ def Fetch_file_path(event=None):
         file_path = askopenfilename()
         Open_file(file_path)
                 
-
 def saveAs(event=None):
     t=T.get("1.0","end-1c")
     global save_location
@@ -89,18 +77,6 @@ def Open_ReadMe(event=None):
         content=file_ptr.read()
         T.delete("1.0",END)
         T.insert("1.0",content)
-
-def Open_Shortcuts(event=None):
-    shortcut = Tk()
-    shortcut.title("Key Shortcuts")
-    shortcut.geometry("320x280")
-    with open("assets/shortcut.txt", "r") as w:
-        content = w.read()
-    Label(shortcut,text=content, justify="left",font=("Helvetica",12,"italic")).pack()
-    Exit_button=Button(shortcut,text="Exit",command = lambda: close_window(shortcut),font=("Helvetica", 10), bg='#f44336', fg='white')
-    Exit_button.pack(padx=10)
-    shortcut.configure()
-    shortcut.mainloop()
 
 def Sel_font_style():
     def fetch_font_style():
@@ -250,7 +226,6 @@ def find_and_replace(event=None):
                 pos=info.find(find_word,pos)
                 if pos ==-1:
                     break
-
                 T.tag_remove('highlight','1.0',END)
                 start_pos = f"1.0 + {pos} chars"
                 end_pos = f"1.0 + {pos + len(find_word)} chars"
@@ -298,7 +273,6 @@ def find_and_replace(event=None):
     find_text=Entry(root_find_replace,textvariable=find_var,justify=CENTER,font=("Helvetica", 12))
     find_text.pack(pady=5)
     
-    
     replace_var=StringVar(root_find_replace)
     Label(root_find_replace,text="Replace :" ,bg="#f0f0f0",font=("Helvetica",12)).pack(pady=10)
     replace_text=Entry(root_find_replace,textvariable=replace_var,justify=CENTER,font=("Helvetica",12,"bold"))
@@ -321,7 +295,6 @@ def find_and_replace(event=None):
     exit_button.pack(side="left", padx=5)
 
     root_find_replace.mainloop()
-
 
 def main():
     global T
