@@ -60,6 +60,7 @@ def saveAs(event=None):
     
 def Save(event=None):
     global file_path
+    file_path = askopenfilename()
     print("Saving the file")
     if not file_path:
         saveAs()
@@ -78,10 +79,8 @@ def spell_check(event=None):
     for i in words:
         correction.append(spell.correction(i))
     corrected_string = ' '.join(correction)
-    # print(corrected_string)
     T.delete('1.0',END)
     T.insert(END, corrected_string)
-    # print(t)
 
 def Open_ReadMe(event=None):
     global file_path
@@ -326,6 +325,11 @@ def find_and_replace(event=None):
 
     root_find_replace.mainloop()
 
+def show_file_menu(event=None):
+    x = root.winfo_rootx() + 50
+    y = root.winfo_rooty() + 50
+    Options_Menu.post(x, y)
+
 
 def main():
     global T
@@ -338,10 +342,12 @@ def main():
     frame.grid(row=0, column=0, sticky='e')
     
     menubar=Menu(root) 
+    global Options_Menu
     Options_Menu=Menu(menubar,tearoff=0) 
     # menubar.bind('<Alt-1>', Options_Menu)
 
     menubar.add_cascade(label="File", menu=Options_Menu)
+    # root.bind('<Alt-1>')
     
     Options_Menu.add_command(label="New    ctrl+n",command=New)
     root.bind('<Control-n>', New)
@@ -363,14 +369,13 @@ def main():
     
     Options_Menu.add_separator()
     Options_Menu.add_command(label="Exit",command = lambda: close_window(root))
-    
+
     Edit_Menu=Menu(menubar,tearoff=0)
     menubar.add_cascade(label="Edit",menu=Edit_Menu)
     Edit_Menu.add_command(label="Find and Replace",command=find_and_replace)
     
     Customize_Menu=Menu(menubar,tearoff=0)
     menubar.add_cascade(label="Customize",menu=Customize_Menu)
-    
     Customize_Menu.add_command(label="Font Style",command=Sel_font_style)
     Customize_Menu.add_command(label="Font Size",command=Set_font_size)
     Customize_Menu.add_command(label="BG Color",command=Sel_bg_color)
@@ -395,7 +400,7 @@ def main():
 
     if len(sys.argv) == 2 : 
         Fetch_file_path()
-        
+    
     root.mainloop()
 
 if __name__ == "__main__":
