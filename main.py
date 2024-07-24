@@ -221,7 +221,49 @@ def clear_all(self):
     T.delete("1.0",END)
     
 def find_and_replace(event=None):
-    pass
+    def Get_find_word():
+        find_word=find_var.get()
+        print(find_word)
+    
+    def Get_rep_word():
+        rep_word=replace_var.get()
+        print(rep_word)
+
+    root_find_replace = Tk()
+    root_find_replace.title("Find and Replace")
+    root_find_replace.geometry("300x300")
+    root_find_replace.configure(bg="#f0f0f0")
+
+    Label(root_find_replace,text="Find and Replace :",bg="#f0f0f0",font=("Helvetica",12)).pack(pady=10)
+    Label(root_find_replace,text="Find :" ,bg="#f0f0f0",font=("Helvetica",12)).pack(pady=10)
+    find_var=StringVar(root_find_replace)
+    find_text=Entry(root_find_replace,textvariable=find_var,justify=CENTER,font=("Helvetica", 12))
+    find_text.pack(pady=5)
+    
+    
+    replace_var=StringVar(root_find_replace)
+    Label(root_find_replace,text="Replace :" ,bg="#f0f0f0",font=("Helvetica",12)).pack(pady=10)
+    replace_text=Entry(root_find_replace,textvariable=replace_var,justify=CENTER,font=("Helvetica",12,"bold"))
+    replace_text.pack(pady=5)
+    print(replace_var.get())
+
+    button_frame = Frame(root_find_replace, bg="#f0f0f0")
+    button_frame.pack(pady=10)
+
+    find_button = Button(button_frame, text="Find", font=("Helvetica", 10), bg="#2196f3", fg="white",command=Get_find_word)
+    find_button.pack(side="left", padx=5)
+
+    replace_button = Button(button_frame, text="Replace", font=("Helvetica", 10), bg="#2196f3", fg="white",command=Get_rep_word)
+    replace_button.pack(side="left", padx=5)
+
+    replaceAll_button = Button(button_frame, text="Replace All", font=("Helvetica", 10), bg="#2196f3", fg="white")
+    replaceAll_button.pack(side="left", padx=5)
+
+    exit_button = Button(button_frame, text="Exit", command=lambda: close_window(root_find_replace), font=("Helvetica", 10), bg='#f44336', fg='white')
+    exit_button.pack(side="left", padx=5)
+
+    root_find_replace.mainloop()
+
 
 def main():
     global T
