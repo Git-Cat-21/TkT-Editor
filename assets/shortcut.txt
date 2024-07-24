@@ -2,6 +2,7 @@ F1 : display this menu
 F7 : auto-correct
 
 ctrl+o : open an existing file
-ctrl+n : open an new file
+ctrl+n : open a new file
 ctrl+s : save a file
-ctrl+l  : clear screen
+ctrl+l : clear screen
+ctrl+f : find and replace

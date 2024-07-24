@@ -24,5 +24,5 @@ python main.py
 ------------------
 
 ### ToDO :
-- [ ] Find and Replace
+- [x] Find and Replace
 - [ ] clipboard feature 
