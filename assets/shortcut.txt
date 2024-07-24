@@ -5,3 +5,4 @@ ctrl+o : open an existing file
 ctrl+n : open a new file
 ctrl+s : save a file
 ctrl+l : clear screen
+ctrl+f : find and replace

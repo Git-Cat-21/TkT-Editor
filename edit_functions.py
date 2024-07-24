@@ -7,7 +7,6 @@ def find_and_replace(event=None):
     T=get_widget('text_widget')
     def check_find_word():
         T.tag_remove("highlight","1.0",END)
-        info=T.get("1.0","end-1c")
         find_word=find_var.get()
 
         start_index="1.0"
