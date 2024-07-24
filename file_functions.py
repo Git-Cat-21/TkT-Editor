@@ -25,12 +25,12 @@ def Fetch_file_path(event=None):
     if(len(sys.argv) == 2):
         file_path = sys.argv[1]
         Open_file(file_path)
-                
-    else:    
+
+    else:
         print("opening an existing file")
         file_path = askopenfilename()
         Open_file(file_path)
-                
+
 def Save(event=None):
     global file_path
     T=get_widget('text_widget')
@@ -40,8 +40,8 @@ def Save(event=None):
         saveAs()
     else:
         with open(file_path,"w") as file1:
-            t = T.get("1.0",END)  
-            file1.write(t)  
+            t = T.get("1.0",END)
+            file1.write(t)
         print(f"File saved to location: {file_path}")
         notification("File saved successfully")
 
@@ -49,21 +49,23 @@ def saveAs(event=None):
     T=get_widget('text_widget')
     t=T.get("1.0","end-1c")
     global save_location
-    global file_path 
+    global file_path
     print("Save As")
     save_location=asksaveasfilename()
     if save_location:
         with open(save_location,"w+") as file1:
             file1.write(t)
-    print(f"File saved to location: {save_location}")
-    file_path=save_location
-    notification("File saved successfully")
+            print(f"File saved to location: {save_location}")
+        file_path=save_location
+        notification("File saved successfully")
+    else:
+        print("enter save location")
 
 
 def notification(message):
     root_destroy=Tk()
     root_destroy.geometry("300x100")
-    
+
     root_destroy.attributes('-topmost',True)
     root_destroy.overrideredirect(True)
 
@@ -83,8 +85,6 @@ def notification(message):
 def close_window(window):
     window.destroy()
 
-def clear_all(self):
+def clear_all(event=None):
     T=get_widget('text_widget')
     T.delete("1.0",END)
-
-
