@@ -66,7 +66,8 @@ def main():
 
     Edit_Menu=Menu(menubar,tearoff=0)
     menubar.add_cascade(label="Edit",menu=Edit_Menu)
-    Edit_Menu.add_command(label="Find and Replace",command=find_and_replace)
+    Edit_Menu.add_command(label="Find and Replace   ctrl+f",command=find_and_replace)
+    root.bind("<Control-f>",find_and_replace)
     
     Customize_Menu=Menu(menubar,tearoff=0)
     menubar.add_cascade(label="Customize",menu=Customize_Menu)
