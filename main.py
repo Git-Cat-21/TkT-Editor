@@ -3,6 +3,7 @@ from tkinter.filedialog import asksaveasfilename,askopenfilename
 from tkinter import colorchooser,messagebox
 from spellchecker import SpellChecker
 import sys
+from notification import *
 
 
 root=Tk()
@@ -16,14 +17,15 @@ rep_word=None
 
 def New(event=None):
     print("Opening a new file")
+    notification("New File")
     main()
+
 
 def close_window(window):
     window.destroy()
 
 def Open_file(event=None):
     global file_path
-    
     if(len(sys.argv) == 2):
         file_path = sys.argv[1]
         if file_path:
@@ -32,7 +34,8 @@ def Open_file(event=None):
                 print("file read succesfully")
                 T.delete("1.0",END)
                 T.insert("1.0",content)
-    
+                notification("Opened file successfully")
+                
     else:    
         print("opening an existing file")
         file_path = askopenfilename()
@@ -42,6 +45,7 @@ def Open_file(event=None):
                 print("file read succesfully")
                 T.delete("1.0",END)
                 T.insert("1.0",content)
+                notification("Opened file successfully")
 
 def saveAs(event=None):
     t=T.get("1.0","end-1c")
@@ -54,6 +58,7 @@ def saveAs(event=None):
             file1.write(t)
     print(f"File saved to location: {save_location}")
     file_path=save_location
+    notification("File saved successfully")
     
 def Save(event=None):
     global file_path
@@ -65,6 +70,7 @@ def Save(event=None):
             t = T.get("1.0",END)  
             file1.write(t)  
         print(f"File saved to location: {file_path}")
+        notification("File saved successfully")
         
 def spell_check(event=None):
     spell = SpellChecker()
@@ -337,8 +343,6 @@ def main():
     Options_Menu=Menu(menubar,tearoff=0) 
     # menubar.bind('<Alt-1>', Options_Menu)
 
-    
-
     menubar.add_cascade(label="File", menu=Options_Menu)
     
     Options_Menu.add_command(label="New    ctrl+n",command=New)
@@ -349,7 +353,6 @@ def main():
     
     Options_Menu.add_command(label="Save   ctrl+s",command=Save)
     root.bind('<Control-s>', Save)
-    
     
     Options_Menu.add_command(label="SaveAs",command=saveAs)
     # root.bind('<Control-Shift-s>', saveAs)
@@ -388,7 +391,6 @@ def main():
     Font_tuple=(font_name,font_size,"bold")
     T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
     
-
     root.grid_rowconfigure(1, weight=1)
     root.grid_columnconfigure(0, weight=1)
     root.config(menu=menubar)
