@@ -12,6 +12,7 @@ font_name='Agave Nerd Font' #default font
 font_size=15 #default font size
 color_hex_bg_code='#e2c6f1' #default bg color
 color_hex_fg_code='black' #default fg color
+rep_word=None
 
 def New(event=None):
     print("Opening a new file")
@@ -221,13 +222,38 @@ def clear_all(self):
     T.delete("1.0",END)
     
 def find_and_replace(event=None):
-    def Get_find_word():
-        find_word=find_var.get()
-        print(find_word)
-    
-    def Get_rep_word():
-        rep_word=replace_var.get()
-        print(rep_word)
+    def check_find_word():
+        info = T.get("1.0", "end-1c")
+        find_word = find_var.get()
+        if find_word in info:
+            position = info.find(find_word)
+            print(f"Word '{find_word}' found at position {position}")
+        else:
+            print(f"Word '{find_word}' not found")
+            
+    def replace_word():
+        info = T.get("1.0", "end-1c")
+        find_word = find_var.get()
+        rep_word = replace_var.get()
+        if find_word in info:
+            info = info.replace(find_word, rep_word, 1)
+            T.delete("1.0", END)
+            T.insert("1.0", info)
+            print(f"Replaced the occurrence of '{find_word}' with '{rep_word}'")
+        else:
+            print(f"Word '{find_word}' not found")
+
+    def replace_all():
+        info = T.get("1.0", "end-1c")
+        find_word = find_var.get()
+        rep_word = replace_var.get()
+        if find_word in info:
+            info = info.replace(find_word, rep_word)
+            T.delete("1.0", END)
+            T.insert("1.0", info)
+            print(f"Replaced all occurrences of '{find_word}' with '{rep_word}'")
+        else:
+            print(f"Word '{find_word}' not found")
 
     root_find_replace = Tk()
     root_find_replace.title("Find and Replace")
@@ -250,13 +276,13 @@ def find_and_replace(event=None):
     button_frame = Frame(root_find_replace, bg="#f0f0f0")
     button_frame.pack(pady=10)
 
-    find_button = Button(button_frame, text="Find", font=("Helvetica", 10), bg="#2196f3", fg="white",command=Get_find_word)
+    find_button = Button(button_frame, text="Find", font=("Helvetica", 10), bg="#2196f3", fg="white",command=check_find_word)
     find_button.pack(side="left", padx=5)
 
-    replace_button = Button(button_frame, text="Replace", font=("Helvetica", 10), bg="#2196f3", fg="white",command=Get_rep_word)
+    replace_button = Button(button_frame, text="Replace", font=("Helvetica", 10), bg="#2196f3", fg="white",command=replace_word)
     replace_button.pack(side="left", padx=5)
 
-    replaceAll_button = Button(button_frame, text="Replace All", font=("Helvetica", 10), bg="#2196f3", fg="white")
+    replaceAll_button = Button(button_frame, text="Replace All", font=("Helvetica", 10), bg="#2196f3", fg="white",command=replace_all)
     replaceAll_button.pack(side="left", padx=5)
 
     exit_button = Button(button_frame, text="Exit", command=lambda: close_window(root_find_replace), font=("Helvetica", 10), bg='#f44336', fg='white')
