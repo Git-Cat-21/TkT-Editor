@@ -10,9 +10,12 @@ from customize_functions import *
 from help_functions import *
 
 root=Tk()
+root.title("『Tk』Ed")
+root.geometry("1280x720")
 
-def New(event=None):
+def New_page(event=None):
     print("Opening a new file")
+    T.delete("1.0",END)
     notification("New File")
     main()
 
@@ -29,9 +32,7 @@ def spell_check(event=None):
     
 def main():
     global T
-    root.title("『Tk』Ed")
-    root.geometry("1280x720")
-     
+    
     frame=Frame(root)
     frame.grid(row=0, column=0, sticky='e')
     
@@ -43,8 +44,8 @@ def main():
     menubar.add_cascade(label="File", menu=Options_Menu)
     # root.bind('<Alt-1>')
     
-    Options_Menu.add_command(label="New    ctrl+n",command=New)
-    root.bind('<Control-n>', New)
+    Options_Menu.add_command(label="New    ctrl+n",command=New_page)
+    root.bind('<Control-n>', New_page)
         
     Options_Menu.add_command(label="Open  ctrl+o",command=Fetch_file_path)
     root.bind('<Control-o>', Fetch_file_path)
