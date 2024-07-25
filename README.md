@@ -3,7 +3,8 @@
 ### Usage :
 
 ```bash
-git clone https://github.com/Git-Cat-21/Text-Editor.git
+git clone https://github.com/Git-Cat-21/TkT-Editor.git
+cd TkT-Editor
 pip install -r requirements.txt
 python main.py
 ```
