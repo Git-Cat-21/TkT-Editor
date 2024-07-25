@@ -6,7 +6,7 @@ file_path=None
 save_location=None
 font_name='Agave Nerd Font' #default font
 font_size=15 #default font size
-color_hex_bg_code='#e2c6f1' #default bg color
+color_hex_bg_code='#FAF9F6' #default bg color
 color_hex_fg_code='black' #default fg color
 rep_word=None
 
