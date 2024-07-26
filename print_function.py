@@ -30,6 +30,7 @@ def convert_to_pdf():
     Label(root_browse,text="Paste the destination link :",bg="#f0f0f0",font=("Helvetica",12)).pack(pady=10)
     destination_var=StringVar(root_browse)
     get_file_dest=Entry(root_browse,textvariable=destination_var,font=('calibre',10,'normal'))
+    get_file_dest.focus_set()
     get_file_dest.pack(pady=5)
 
     Label(root_browse,text="Enter File Name :",bg="#f0f0f0",font=("Helvetica",12)).pack(pady=10)
@@ -49,9 +50,6 @@ def convert_to_pdf():
     exit_button = Button(button_frame, text="Exit", command=lambda: close_window(root_browse), font=("Helvetica", 10), bg='#f44336', fg='white')
     exit_button.pack(side="left", padx=5)
 
-    # browse, submit, exit
-
     root_browse.mainloop()
-    # askopenfilename()
 
     

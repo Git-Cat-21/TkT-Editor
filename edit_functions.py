@@ -97,6 +97,7 @@ def find_and_replace(event=None):
     find_var=StringVar(root_find_replace)
     find_text=Entry(root_find_replace,textvariable=find_var,justify=CENTER,font=("Helvetica", 12))
     find_text.pack(pady=5)
+    find_text.focus_set()
     
     replace_var=StringVar(root_find_replace)
     Label(root_find_replace,text="Replace :" ,bg="#f0f0f0",font=("Helvetica",12)).pack(pady=10)
