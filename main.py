@@ -17,7 +17,7 @@ root.geometry("1280x720")
 def New_page(event=None):
     print("Opening a new file")
     T.delete("1.0",END)
-    notification("New File")
+    notification("New File",700)
     main()
 
 def spell_check(event=None):

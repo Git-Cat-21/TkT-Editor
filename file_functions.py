@@ -19,7 +19,7 @@ def Fetch_file_path(event=None):
                 print("file read succesfully")
                 T.delete("1.0",END)
                 T.insert("1.0",content)
-                notification("Opened file successfully")
+                notification("Opened file successfully",700)
 
     global file_path
     if(len(sys.argv) == 2):
@@ -43,7 +43,7 @@ def Save(event=None):
             t = T.get("1.0",END)
             file1.write(t)
         print(f"File saved to location: {file_path}")
-        notification("File saved successfully")
+        notification("File saved successfully",700)
 
 def saveAs(event=None):
     T=get_widget('text_widget')
@@ -57,12 +57,12 @@ def saveAs(event=None):
             file1.write(t)
             print(f"File saved to location: {save_location}")
         file_path=save_location
-        notification("File saved successfully")
+        notification("File saved successfully",700)
     else:
         print("enter save location")
 
 
-def notification(message):
+def notification(message,disp_time):
     root_destroy=Tk()
     root_destroy.geometry("300x100")
 
@@ -79,7 +79,7 @@ def notification(message):
     y=50
     root_destroy.geometry(f'{width}x{height}+{x}+{y}')
 
-    root_destroy.after(700,root_destroy.destroy)
+    root_destroy.after(disp_time,root_destroy.destroy)
     root_destroy.mainloop()
 
 def close_window(window):
