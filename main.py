@@ -44,22 +44,22 @@ def main():
     menubar.add_cascade(label="File", menu=Options_Menu)
     # root.bind('<Alt-1>')
     
-    Options_Menu.add_command(label="New    ctrl+n",command=New_page)
+    Options_Menu.add_command(label="New",command=New_page,accelerator="Ctrl+N")
     root.bind('<Control-n>', New_page)
         
-    Options_Menu.add_command(label="Open  ctrl+o",command=Fetch_file_path)
+    Options_Menu.add_command(label="Open",command=Fetch_file_path,accelerator="Ctrl+O")
     root.bind('<Control-o>', Fetch_file_path)
     
-    Options_Menu.add_command(label="Save   ctrl+s",command=Save)
+    Options_Menu.add_command(label="Save",command=Save,accelerator="Ctrl+S")
     root.bind('<Control-s>', Save)
     
     Options_Menu.add_command(label="SaveAs",command=saveAs)
     # root.bind('<Control-Shift-s>', saveAs)
     
-    Options_Menu.add_command(label="check   F7", command=spell_check)
+    Options_Menu.add_command(label="SpellCheck", command=spell_check,accelerator="F7")
     root.bind('<F7>',spell_check)
     
-    Options_Menu.add_command(label="ClearScreen  ctrl+l",command=clear_all)
+    Options_Menu.add_command(label="ClearScreen",command=clear_all,accelerator="Ctrl+L")
     root.bind('<Control-l>',clear_all)
     
     Options_Menu.add_separator()
@@ -67,7 +67,7 @@ def main():
 
     Edit_Menu=Menu(menubar,tearoff=0)
     menubar.add_cascade(label="Edit",menu=Edit_Menu)
-    Edit_Menu.add_command(label="Find and Replace   ctrl+f",command=find_and_replace)
+    Edit_Menu.add_command(label="Find and Replace",command=find_and_replace,accelerator="Ctrl+F")
     root.bind("<Control-f>",find_and_replace)
     
     Customize_Menu=Menu(menubar,tearoff=0)
@@ -80,7 +80,7 @@ def main():
     Help_menu=Menu(menubar,tearoff=0)
     menubar.add_cascade(label="Help",menu=Help_menu)
     Help_menu.add_command(label="ReadMe",command=Open_ReadMe)
-    Help_menu.add_command(label="Shortcuts F1",command=Open_Shortcuts)
+    Help_menu.add_command(label="Shortcuts",command=Open_Shortcuts,accelerator="F1")
     root.bind('<F1>',Open_Shortcuts)
     
     T=Text(root,height=700,width=700)
