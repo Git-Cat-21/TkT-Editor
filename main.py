@@ -67,6 +67,8 @@ def main():
 
     Edit_Menu=Menu(menubar,tearoff=0)
     menubar.add_cascade(label="Edit",menu=Edit_Menu)
+    Edit_Menu.add_command(label="Highlight Text",command=highlight_text,accelerator="Ctrl+H")
+    root.bind("<Control-p>",highlight_text)
     Edit_Menu.add_command(label="Find and Replace",command=find_and_replace,accelerator="Ctrl+F")
     root.bind("<Control-f>",find_and_replace)
     
