@@ -1,8 +1,36 @@
 from tkinter import *
 from tkinter import messagebox
 from widget_registry import get_widget
-from file_functions import close_window
+from file_functions import *
 
+
+def set_bold(event=None):
+    T = get_widget('text_widget')
+    Font_tuple=(font_name,font_size,"bold")
+    T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
+    
+def set_italics(event=None):
+    T = get_widget('text_widget')
+    Font_tuple=(font_name,font_size,"italic")
+    T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
+    
+
+def set_underline(event=None):
+    T = get_widget('text_widget')
+    Font_tuple=(font_name,font_size,"underline")
+    T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
+
+def set_strike(event=None):
+    T = get_widget('text_widget')
+    Font_tuple=(font_name,font_size,"overstrike")
+    T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
+
+def set_bold_italics(event=None):
+    T = get_widget('text_widget')
+    Font_tuple=(font_name,font_size,"bold italic")
+    T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
+    
+    
 def highlight_text(event=None):
     def check_again():
         T=get_widget('text_widget')

@@ -31,6 +31,7 @@ def spell_check(event=None):
     T.delete('1.0',END)
     T.insert(END, corrected_string)
     
+    
 def main():
     global T
     
@@ -68,6 +69,18 @@ def main():
 
     Edit_Menu=Menu(menubar,tearoff=0)
     menubar.add_cascade(label="Edit",menu=Edit_Menu)
+    Edit_Menu.add_command(label="Bold",command=set_bold,accelerator="Ctrl+B")
+    root.bind("<Control-b>",highlight_text)
+    Edit_Menu.add_command(label="Italics",command=set_italics,accelerator="Ctrl+I")
+    root.bind("<Control-i>",highlight_text)
+    Edit_Menu.add_command(label="Underline",command=set_underline,accelerator="Ctrl+U")
+    root.bind("<Control-u>",highlight_text)
+    Edit_Menu.add_command(label="Stikethrough",command=set_strike,accelerator="Ctrl+U")
+    root.bind("<Control-u>",highlight_text)
+    Edit_Menu.add_command(label="Bold&Italics",command=set_bold_italics,accelerator="Ctrl+U")
+    root.bind("<Control-u>",highlight_text)
+    
+    Edit_Menu.add_separator()
     Edit_Menu.add_command(label="Highlight Text",command=highlight_text,accelerator="Ctrl+E")
     root.bind("<Control-e>",highlight_text)
     Edit_Menu.add_command(label="Find and Replace",command=find_and_replace,accelerator="Ctrl+F")
@@ -96,7 +109,7 @@ def main():
     T.focus_set()
     register_widget('text_widget',T)
 
-    Font_tuple=(font_name,font_size,"bold")
+    Font_tuple=(font_name,font_size,"normal")
     T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
     
     root.grid_rowconfigure(1, weight=1)
