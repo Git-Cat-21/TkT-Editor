@@ -28,3 +28,4 @@ python main.py
 - [x] Find and Replace
 - [ ] clipboard feature 
 - [ ] letter and word count
+- [ ] text highlight 
