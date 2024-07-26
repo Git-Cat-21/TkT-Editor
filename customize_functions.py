@@ -1,6 +1,6 @@
 from widget_registry import get_widget
 from tkinter import *
-from file_functions import close_window
+from file_functions import *
 from tkinter import colorchooser
 
 def Sel_font_style():

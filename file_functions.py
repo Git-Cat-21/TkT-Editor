@@ -2,6 +2,7 @@ from tkinter import *
 from widget_registry import get_widget
 from tkinter.filedialog import asksaveasfilename,askopenfilename
 import sys
+
 file_path=None
 save_location=None
 font_name='Agave Nerd Font' #default font
