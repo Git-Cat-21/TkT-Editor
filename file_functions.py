@@ -5,7 +5,7 @@ import sys
 file_path=None
 save_location=None
 font_name='Agave Nerd Font' #default font
-font_size=15 #default font size
+font_size=21 #default font size
 color_hex_bg_code='#FFFFED' #default bg color
 color_hex_fg_code='black' #default fg color
 rep_word=None

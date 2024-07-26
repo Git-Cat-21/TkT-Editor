@@ -51,7 +51,7 @@ def Set_font_size():
 
     Label(root_font_size,text="Enter Font Size:",bg="#f0f0f0",font=("Helvetica",12,"bold")).pack(pady=10)
 
-    name_var=IntVar(root_font_size,15)
+    name_var=IntVar(root_font_size,21)
     font_fetch=Entry(root_font_size,textvariable=name_var,justify=CENTER,font=("Helvetica", 12))
     font_fetch.pack(pady=5)
 
