@@ -8,6 +8,7 @@ from file_functions import *
 from edit_functions import *
 from customize_functions import *
 from help_functions import *
+from print_function import *
 
 root=Tk()
 root.title("『Tk』Ed")
@@ -84,6 +85,10 @@ def main():
     Help_menu.add_command(label="ReadMe",command=Open_ReadMe)
     Help_menu.add_command(label="Shortcuts",command=Open_Shortcuts,accelerator="F1")
     root.bind('<F1>',Open_Shortcuts)
+
+    Print_menu=Menu(menubar,tearoff=0)
+    menubar.add_cascade(label="Print",menu=Print_menu)
+    Print_menu.add_command(label="Generate PDF",command=convert_to_pdf)
     
     T=Text(root,height=700,width=700)
     T.grid(row=1, column=0, sticky='nsew')
