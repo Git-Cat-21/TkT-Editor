@@ -3,6 +3,27 @@ from tkinter import messagebox
 from widget_registry import get_widget
 from file_functions import close_window
 
+def highlight_text(event=None):
+    def check_again():
+        T=get_widget('text_widget')
+        new_sel_ranges=T.tag_ranges("sel")
+        if sel_ranges==new_sel_ranges:
+            T.tag_remove("highlight","1.0",END)
+        else:
+            pass
+
+    T=get_widget('text_widget')
+    T.tag_remove("highlight","1.0",END)
+    sel_ranges=T.tag_ranges("sel")
+    
+    if not sel_ranges:
+        return
+    sel_start,sel_end = sel_ranges
+    T.tag_add('highlight',sel_start,sel_end)
+    T.tag_config('highlight',background="yellow")
+
+    T.after(1500,check_again)
+
 def find_and_replace(event=None):
     T=get_widget('text_widget')
     def check_find_word():
@@ -76,6 +97,7 @@ def find_and_replace(event=None):
     find_var=StringVar(root_find_replace)
     find_text=Entry(root_find_replace,textvariable=find_var,justify=CENTER,font=("Helvetica", 12))
     find_text.pack(pady=5)
+    find_text.focus_set
     
     replace_var=StringVar(root_find_replace)
     Label(root_find_replace,text="Replace :" ,bg="#f0f0f0",font=("Helvetica",12)).pack(pady=10)
