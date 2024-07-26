@@ -89,7 +89,7 @@ def main():
     Print_menu=Menu(menubar,tearoff=0)
     menubar.add_cascade(label="Print",menu=Print_menu)
     Print_menu.add_command(label="Generate PDF",command=convert_to_pdf,accelerator="Ctrl+P")
-    root.bind("<Control-p",convert_to_pdf)
+    root.bind("<Control-p>",convert_to_pdf)
     
     T=Text(root,height=700,width=700)
     T.grid(row=1, column=0, sticky='nsew')
