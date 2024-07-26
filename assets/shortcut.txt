@@ -6,3 +6,5 @@ ctrl+n : open a new file
 ctrl+s : save a file
 ctrl+l : clear screen
 ctrl+f : find and replace
+ctrl+e : highlight text
+ctrl+p : convert to pdf

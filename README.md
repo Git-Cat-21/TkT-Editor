@@ -1,4 +1,4 @@
-# TkT Editor
+# TkT~Ed
 ---------------
 ### Usage :
 
@@ -9,23 +9,21 @@ pip install -r requirements.txt
 python main.py
 ```
 
--   The TkT Editor window should now be open. You can use the. Explore the TkT Editor and enjoy its features
+-   The TkT Editor window should now open. Explore the TkT Editor and enjoy its features
 
 --------------
-### Features :
-- **New File**: Opens a new blank file.
-- **Open File**: Opens an existing text file.
-- **Save**: Saves the current file.
-- **Save As**: Saves the file with a new name at the desired location.
-- **Clear Screen**: Clears all the text from the editor.
-- **Font Style**: Customize the font style from a predefined list.
-- **Font Size**: Set the font size as desired.
-- **Background Color**: Change the background color of the text editor.
-- **Foreground Color**: Change the foreground (text) color of the text editor.
+
+### Preview :
+
+![image containg a preview of the text editor along with features](/assets/preview.png "Preview")
+
+
+
 ------------------
 
 ### ToDO :
 - [x] Find and Replace
+- [x] Text emphasis
 - [ ] clipboard feature 
 - [ ] letter and word count
-- [ ] text highlight 
+- [x] text highlight 
