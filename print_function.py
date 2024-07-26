@@ -5,7 +5,7 @@ from file_functions import font_name,font_size
 from tkinter.filedialog import askopenfilename
 from file_functions import close_window,notification
 
-def convert_to_pdf():
+def convert_to_pdf(event=None):
     def get_values():
         destination=destination_var.get()
         file_name=file_name_var.get()

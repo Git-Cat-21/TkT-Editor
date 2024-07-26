@@ -68,8 +68,8 @@ def main():
 
     Edit_Menu=Menu(menubar,tearoff=0)
     menubar.add_cascade(label="Edit",menu=Edit_Menu)
-    Edit_Menu.add_command(label="Highlight Text",command=highlight_text,accelerator="Ctrl+P")
-    root.bind("<Control-p>",highlight_text)
+    Edit_Menu.add_command(label="Highlight Text",command=highlight_text,accelerator="Ctrl+E")
+    root.bind("<Control-e>",highlight_text)
     Edit_Menu.add_command(label="Find and Replace",command=find_and_replace,accelerator="Ctrl+F")
     root.bind("<Control-f>",find_and_replace)
     
@@ -88,7 +88,8 @@ def main():
 
     Print_menu=Menu(menubar,tearoff=0)
     menubar.add_cascade(label="Print",menu=Print_menu)
-    Print_menu.add_command(label="Generate PDF",command=convert_to_pdf)
+    Print_menu.add_command(label="Generate PDF",command=convert_to_pdf,accelerator="Ctrl+P")
+    root.bind("<Control-p",convert_to_pdf)
     
     T=Text(root,height=700,width=700)
     T.grid(row=1, column=0, sticky='nsew')
