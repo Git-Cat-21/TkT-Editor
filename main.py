@@ -13,6 +13,8 @@ from print_function import *
 root=Tk()
 root.title("『Tk』Ed")
 root.geometry("1280x720")
+img=PhotoImage(file='assets/pen1.png')
+root.iconphoto(False,img)
 
 def New_page(event=None):
     print("Opening a new file")
