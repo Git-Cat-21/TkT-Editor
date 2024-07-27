@@ -29,6 +29,11 @@ def set_bold_italics(event=None):
     T = get_widget('text_widget')
     Font_tuple=(font_name,font_size,"bold italic")
     T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
+
+def remove_emphasis(event=None):
+    T = get_widget('text_widget')
+    Font_tuple=(font_name,font_size,"normal")
+    T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
     
     
 def highlight_text(event=None):

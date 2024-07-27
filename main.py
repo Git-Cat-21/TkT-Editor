@@ -82,6 +82,8 @@ def main():
     root.bind("<Control-u>",highlight_text)
     Edit_Menu.add_command(label="Bold&Italics",command=set_bold_italics,accelerator="Ctrl+U")
     root.bind("<Control-u>",highlight_text)
+    Edit_Menu.add_command(label="Remove",command=remove_emphasis)
+    # root.bind("<Control-u>",highlight_text)
     
     Edit_Menu.add_separator()
     Edit_Menu.add_command(label="Highlight Text",command=highlight_text,accelerator="Ctrl+E")
