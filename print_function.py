@@ -4,6 +4,7 @@ from fpdf import FPDF
 from file_functions import font_name,font_size
 from tkinter.filedialog import askopenfilename
 from file_functions import close_window,notification
+from pathlib import Path
 
 def convert_to_pdf(event=None):
     def get_values():
@@ -11,8 +12,11 @@ def convert_to_pdf(event=None):
         file_name=file_name_var.get()
         print(destination)
         print(file_name)
-        file_save_path=destination+"\\"+file_name+".pdf"
-        pdf.output(file_save_path)
+        # file_save_path=destination+"/"+file_name+".pdf"
+        file_save_path=str(Path(destination).joinpath(file_name))
+        pdf.output(file_save_path+".pdf")
+        # file_save_path=str(file_save_path)+".pdf"
+        # print(file_save_path)
         notification("file saved successfully at "+file_save_path,1500)
 
     pdf=FPDF()
