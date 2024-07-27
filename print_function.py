@@ -12,12 +12,12 @@ def convert_to_pdf(event=None):
         file_name=file_name_var.get()
         print(destination)
         print(file_name)
-        # file_save_path=destination+"/"+file_name+".pdf"
         file_save_path=str(Path(destination).joinpath(file_name))
         pdf.output(file_save_path+".pdf")
+        notification("file saved successfully at "+file_save_path,1500)
+        # file_save_path=destination+"/"+file_name+".pdf"
         # file_save_path=str(file_save_path)+".pdf"
         # print(file_save_path)
-        notification("file saved successfully at "+file_save_path,1500)
 
     pdf=FPDF()
     pdf.add_page()
