@@ -1,10 +1,23 @@
-F1 : display this menu
-F7 : auto-correct
+File :
+Ctrl + o : Open an existing file
+Ctrl + n : Open a new file
+Ctrl + s : Save a file
+Ctrl + Shift + S : Save As
+F7 : Spell check
+Ctrl + l : Clear screen
 
-ctrl+o : open an existing file
-ctrl+n : open a new file
-ctrl+s : save a file
-ctrl+l : clear screen
-ctrl+f : find and replace
-ctrl+e : highlight text
-ctrl+p : convert to pdf
+Edit :
+Ctrl + b : Bold
+Ctrl + i : Italics
+Ctrl + u : Underline
+Ctrl + r : StrikeThrough
+Ctrl + Shift + B : Bold & Italics
+Ctrl + Shift + R : Remove emphasis
+Ctrl + e : Highlight text
+Ctrl + f : Find & replace
+
+Help :
+F1 : Shortcuts
+
+Print :
+Ctrl + p : Generate PDF
