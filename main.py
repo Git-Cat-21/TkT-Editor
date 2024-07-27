@@ -20,7 +20,8 @@ def New_page(event=None):
     print("Opening a new file")
     T.delete("1.0",END)
     notification("New File",700)
-    main()
+    T.after(1000,main)
+    # main()
 
 def spell_check(event=None):
     spell = SpellChecker()
