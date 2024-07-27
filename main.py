@@ -13,6 +13,8 @@ from print_function import *
 root=Tk()
 root.title("『Tk』Ed")
 root.geometry("1280x720")
+img=PhotoImage(file='assets/pen1.png')
+root.iconphoto(False,img)
 
 def New_page(event=None):
     print("Opening a new file")
@@ -104,7 +106,7 @@ def main():
     Print_menu.add_command(label="Generate PDF",command=convert_to_pdf,accelerator="Ctrl+P")
     root.bind("<Control-p>",convert_to_pdf)
     
-    T=Text(root,height=700,width=700)
+    T=Text(root,height=700,width=700,undo=True)
     T.grid(row=1, column=0, sticky='nsew')
     T.focus_set()
     register_widget('text_widget',T)
