@@ -49,22 +49,22 @@ def main():
     menubar.add_cascade(label="File", menu=Options_Menu)
     # root.bind('<Alt-1>')
     
-    Options_Menu.add_command(label="New",command=New_page,accelerator="Ctrl+N")
+    Options_Menu.add_command(label="New",command=New_page,accelerator="Ctrl+n")
     root.bind('<Control-n>', New_page)
         
-    Options_Menu.add_command(label="Open",command=Fetch_file_path,accelerator="Ctrl+O")
+    Options_Menu.add_command(label="Open",command=Fetch_file_path,accelerator="Ctrl+o")
     root.bind('<Control-o>', Fetch_file_path)
     
-    Options_Menu.add_command(label="Save",command=Save,accelerator="Ctrl+S")
+    Options_Menu.add_command(label="Save",command=Save,accelerator="Ctrl+s")
     root.bind('<Control-s>', Save)
     
-    Options_Menu.add_command(label="SaveAs",command=saveAs)
-    # root.bind('<Control-Shift-s>', saveAs)
+    Options_Menu.add_command(label="SaveAs",command=saveAs,accelerator="Ctrl+Shift+S")
+    root.bind('<Control-Shift-S>', saveAs)
     
     Options_Menu.add_command(label="SpellCheck", command=spell_check,accelerator="F7")
     root.bind('<F7>',spell_check)
     
-    Options_Menu.add_command(label="ClearScreen",command=clear_all,accelerator="Ctrl+L")
+    Options_Menu.add_command(label="ClearScreen",command=clear_all,accelerator="Ctrl+l")
     root.bind('<Control-l>',clear_all)
     
     Options_Menu.add_separator()
@@ -72,23 +72,23 @@ def main():
 
     Edit_Menu=Menu(menubar,tearoff=0)
     menubar.add_cascade(label="Edit",menu=Edit_Menu)
-    Edit_Menu.add_command(label="Bold",command=set_bold,accelerator="Ctrl+B")
-    root.bind("<Control-b>",highlight_text)
-    Edit_Menu.add_command(label="Italics",command=set_italics,accelerator="Ctrl+I")
-    root.bind("<Control-i>",highlight_text)
-    Edit_Menu.add_command(label="Underline",command=set_underline,accelerator="Ctrl+U")
-    root.bind("<Control-u>",highlight_text)
-    Edit_Menu.add_command(label="Stikethrough",command=set_strike,accelerator="Ctrl+U")
-    root.bind("<Control-u>",highlight_text)
-    Edit_Menu.add_command(label="Bold&Italics",command=set_bold_italics,accelerator="Ctrl+U")
-    root.bind("<Control-u>",highlight_text)
-    Edit_Menu.add_command(label="Remove",command=remove_emphasis)
-    # root.bind("<Control-u>",highlight_text)
+    Edit_Menu.add_command(label="Bold",command=set_bold,accelerator="Ctrl+b")
+    root.bind("<Control-b>",set_bold)
+    Edit_Menu.add_command(label="Italics",command=set_italics,accelerator="Ctrl+i")
+    root.bind("<Control-i>",set_italics)
+    Edit_Menu.add_command(label="Underline",command=set_underline,accelerator="Ctrl+u")
+    root.bind("<Control-u>",set_underline)
+    Edit_Menu.add_command(label="Stikethrough",command=set_strike,accelerator="Ctrl+r")
+    root.bind("<Control-r>",set_strike)
+    Edit_Menu.add_command(label="Bold&Italics",command=set_bold_italics,accelerator="Ctrl+Shift+B")
+    root.bind("<Control-Shift-B>",set_bold_italics)
+    Edit_Menu.add_command(label="Remove",command=remove_emphasis,accelerator="Ctrl+Shift+R")
+    root.bind("<Control-Shift-R>",remove_emphasis)
     
     Edit_Menu.add_separator()
-    Edit_Menu.add_command(label="Highlight Text",command=highlight_text,accelerator="Ctrl+E")
+    Edit_Menu.add_command(label="Highlight Text",command=highlight_text,accelerator="Ctrl+e")
     root.bind("<Control-e>",highlight_text)
-    Edit_Menu.add_command(label="Find and Replace",command=find_and_replace,accelerator="Ctrl+F")
+    Edit_Menu.add_command(label="Find and Replace",command=find_and_replace,accelerator="Ctrl+f")
     root.bind("<Control-f>",find_and_replace)
     
     Customize_Menu=Menu(menubar,tearoff=0)
@@ -106,7 +106,7 @@ def main():
 
     Print_menu=Menu(menubar,tearoff=0)
     menubar.add_cascade(label="Print",menu=Print_menu)
-    Print_menu.add_command(label="Generate PDF",command=convert_to_pdf,accelerator="Ctrl+P")
+    Print_menu.add_command(label="Generate PDF",command=convert_to_pdf,accelerator="Ctrl+p")
     root.bind("<Control-p>",convert_to_pdf)
     
     T=Text(root,height=700,width=700,undo=True)
