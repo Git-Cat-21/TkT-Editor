@@ -109,17 +109,25 @@ def main():
     Print_menu.add_command(label="Generate PDF",command=convert_to_pdf,accelerator="Ctrl+p")
     root.bind("<Control-p>",convert_to_pdf)
     
-    T=Text(root,height=700,width=700,undo=True)
-    T.grid(row=1, column=0, sticky='nsew')
+    T=Text(root,height=700,width=700,undo=True,wrap=NONE)
+    T.grid(row=0, column=0, sticky='nsew')
     T.focus_set()
     register_widget('text_widget',T)
 
     Font_tuple=(font_name,font_size,"normal")
     T.configure(font=Font_tuple,foreground=color_hex_fg_code,background=color_hex_bg_code)
     
-    root.grid_rowconfigure(1, weight=1)
+    root.grid_rowconfigure(0, weight=1)
     root.grid_columnconfigure(0, weight=1)
     root.config(menu=menubar)
+
+    scroll_bar_v=Scrollbar(root,orient=VERTICAL,command=T.yview)
+    scroll_bar_v.grid(row=0,column=1,sticky='ns')
+    T.config(yscrollcommand=scroll_bar_v.set)
+
+    scroll_bar_h=Scrollbar(root,orient=HORIZONTAL,command=T.xview)
+    scroll_bar_h.grid(row=1,column=0,sticky='ew')
+    T.config(xscrollcommand=scroll_bar_h.set)
 
     if len(sys.argv) == 2 : 
         Fetch_file_path()
