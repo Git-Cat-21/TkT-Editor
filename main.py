@@ -10,6 +10,7 @@ from customize_functions import *
 from help_functions import *
 from print_function import *
 
+#welcome to TkT
 root=Tk()
 root.title("『Tk』Ed")
 root.geometry("1280x720")
