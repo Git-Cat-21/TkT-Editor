@@ -1,7 +1,7 @@
 from tkinter import *
 from widget_registry import get_widget
 from fpdf import FPDF
-from file_functions import font_name,font_size
+from file_functions import font_size
 from tkinter.filedialog import askopenfilename
 from file_functions import close_window,notification
 from pathlib import Path
@@ -14,7 +14,7 @@ def convert_to_pdf(event=None):
         print(file_name)
         file_save_path=str(Path(destination).joinpath(file_name))
         pdf.output(file_save_path+".pdf")
-        notification("file saved successfully at ",1500)
+        notification("file saved successfully ",1500)
 
     pdf=FPDF()
     pdf.add_page()
