@@ -35,7 +35,7 @@ def Fetch_file_path(event=None):
 def Save(event=None):
     global file_path
     T=get_widget('text_widget')
-    file_path = askopenfilename()
+    # file_path = askopenfilename()
     print("Saving the file")
     if not file_path:
         saveAs()
