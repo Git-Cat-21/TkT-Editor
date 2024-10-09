@@ -1,3 +1,4 @@
+# hi this is TkT, a portable text editor
 from tkinter import *
 from tkinter.filedialog import asksaveasfilename,askopenfilename
 from tkinter import colorchooser,messagebox
